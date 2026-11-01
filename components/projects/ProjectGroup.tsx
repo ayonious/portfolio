@@ -1,3 +1,6 @@
+"use client";
+
+import { useSiteContent } from "../ContentProvider";
 import HeadingLink from "../HeadingLink";
 import Button from "../Button";
 import BrandIcon, { brandNames } from "../BrandIcon";
@@ -7,7 +10,6 @@ import ProjectStars from "./ProjectStars";
 import NpmDownloads from "./NpmDownloads";
 import { getProjectTechnologies } from "./projectUtils";
 import type { DownloadStat, OpenSourceProject } from "../../config/projects";
-import { pageContent } from "../../config/siteContent";
 
 export type ProjectGroupProps = {
   label: string;
@@ -22,6 +24,7 @@ export type ProjectGroupProps = {
 };
 
 export default function ProjectGroup({ label, limit, onlyPinned, projects, description, downloadStat, showStats = true, view = "cards", url }: ProjectGroupProps) {
+  const { pageContent } = useSiteContent();
   const filteredProjects = onlyPinned ? projects.filter((project) => project.pinned) : projects;
   const visibleProjects = limit ? filteredProjects.slice(0, limit) : filteredProjects;
   const totalStars = visibleProjects.reduce((total, project) => total + project.stars, 0);

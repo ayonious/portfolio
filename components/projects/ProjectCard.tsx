@@ -1,13 +1,17 @@
+"use client";
+
+import { useSiteContent } from "../ContentProvider";
 import HeadingLink from "../HeadingLink";
 import Button from "../Button";
 import TagList from "../TagList";
-import { tagContent } from "../../config/siteContent";
+
 import ProjectStars from "./ProjectStars";
 import NpmDownloads from "./NpmDownloads";
 import type { OpenSourceProject } from "../../config/projects";
 import { getProjectTechnologies } from "./projectUtils";
 
 export default function ProjectCard({ project }: { project: OpenSourceProject }) {
+  const { tagContent } = useSiteContent();
   const technologies = getProjectTechnologies(project);
   const linkLabel = project.url.includes("github.com") ? "Open in GitHub" : "Open project";
 

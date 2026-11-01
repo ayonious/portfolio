@@ -1,5 +1,8 @@
 "use client";
 
+import { useSiteContent } from "./ContentProvider";
+
+import LanguageSwitcher from "./LanguageSwitcher";
 import InlineLink from "./InlineLink";
 
 import Link from "next/link";
@@ -8,10 +11,7 @@ import { useEffect, useRef, useState } from "react";
 import ColorPalette from "./ColorPalette";
 import ThemeToggle from "./ThemeToggle";
 import BrandIcon from "./BrandIcon";
-import {
-  sidebarContent,
-  type NavigationIcon,
-} from "../config/siteContent";
+import { type NavigationIcon } from "../config/siteContent";
 import {
   BooksIcon,
   BriefcaseIcon,
@@ -41,6 +41,7 @@ const navigationIcons: Record<NavigationIcon, typeof BriefcaseIcon> = {
 };
 
 export default function ProfileSidebar() {
+  const { sidebarContent } = useSiteContent();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -185,6 +186,8 @@ export default function ProfileSidebar() {
             );
           })}
         </nav>
+
+        <LanguageSwitcher />
 
         <div className="mt-8 flex flex-col items-center border-t border-slate-200 pt-5 dark:border-slate-700 lg:mt-auto">
           <div className="flex justify-center gap-2">

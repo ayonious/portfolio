@@ -1,9 +1,11 @@
+"use client";
+
+import { useSiteContent } from "../../components/ContentProvider";
 import PageHeader from "../../components/PageHeader";
 import ProjectGroup from "../../components/projects/ProjectGroup";
-import { openSourceProjectsConfig } from "../../config/projects";
-import { pageContent } from "../../config/siteContent";
 
 export default function ProjectsPage() {
+  const { pageContent, openSourceProjectsConfig } = useSiteContent();
   const { profile, gamified, engineering, organization, university } = openSourceProjectsConfig;
 
   return (

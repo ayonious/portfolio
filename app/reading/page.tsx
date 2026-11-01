@@ -1,10 +1,13 @@
+"use client";
+
+import { useSiteContent } from "../../components/ContentProvider";
 import PageHeader from "../../components/PageHeader";
 import Button from "../../components/Button";
-import { otherBooks, programmingBooks } from "../../config/books";
-import { pageContent } from "../../config/siteContent";
+
 import BookList from "../../components/reading/BookList";
 
 export default function ReadingPage() {
+  const { pageContent, otherBooks, programmingBooks } = useSiteContent();
   return (
     <div className="max-w-4xl py-8 sm:py-16">
       <PageHeader title={pageContent.books.title} introduction={pageContent.books.introduction}>

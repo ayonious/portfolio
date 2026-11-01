@@ -1,9 +1,12 @@
+"use client";
+
+import { useSiteContent } from "../../components/ContentProvider";
 import PageHeader from "../../components/PageHeader";
-import { certifications } from "../../config/certifications";
-import { pageContent } from "../../config/siteContent";
+
 import CertificationItem from "../../components/certifications/CertificationItem";
 
 export default function CertificationsPage() {
+  const { pageContent, certifications } = useSiteContent();
   return (
     <div className="max-w-4xl py-8 sm:py-16">
       <PageHeader title={pageContent.certifications.title} introduction={pageContent.certifications.introduction} />

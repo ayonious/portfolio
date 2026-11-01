@@ -1,22 +1,21 @@
 import { renderToStaticMarkup } from "react-dom/server";
-import { describe, expect, it } from "@jest/globals";
-import RootLayout, { metadata } from "../app/layout";
+import { describe, expect, it, jest } from "@jest/globals";
+jest.mock("next/headers", () => ({ headers: async () => new Headers({ host: "localhost" }) }));
+const { default: RootLayout, generateMetadata } = require("../app/layout") as typeof import("../app/layout");
 
 describe("root layout", () => {
-  it("sets the site metadata", () => {
-    expect(metadata).toMatchObject({
+  it("sets the site metadata", async () => {
+    expect(await generateMetadata()).toMatchObject({
       title: "Nahiyan Kamal — Software Engineer",
       description:
         "Personal portfolio of Nahiyan Kamal, a Senior Fullstack Software Engineer based in Munich.",
     });
   });
 
-  it("renders the shared navigation and page content", () => {
+  it("renders the shared navigation and page content", async () => {
     const document = new DOMParser().parseFromString(
       renderToStaticMarkup(
-        <RootLayout>
-          <h1>Test page</h1>
-        </RootLayout>,
+        await RootLayout({ children: <h1>Test page</h1> }),
       ),
       "text/html",
     );

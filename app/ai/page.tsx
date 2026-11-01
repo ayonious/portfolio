@@ -1,8 +1,10 @@
+"use client";
+
+import { useSiteContent } from "../../components/ContentProvider";
 import PageHeader from "../../components/PageHeader";
-import { aiCapabilities, aiTools, aiWork } from "../../config/ai";
-import { pageContent } from "../../config/siteContent";
 
 export default function AiPage() {
+  const { pageContent, aiCapabilities, aiTools, aiWork } = useSiteContent();
   return (
     <div className="max-w-4xl py-8 sm:py-16">
       <PageHeader title={pageContent.ai.title} introduction={pageContent.ai.introduction} />

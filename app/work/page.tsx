@@ -1,12 +1,13 @@
+"use client";
+
+import { useSiteContent } from "../../components/ContentProvider";
 import PageHeader from "../../components/PageHeader";
 import ScrollReveal from "../../components/ScrollReveal";
 import WorkHistoryCard from "../../components/work/WorkHistoryCard";
 import WorkProjectCard from "../../components/work/WorkProjectCard";
-import { pageContent } from "../../config/siteContent";
-import { workHistory } from "../../config/workHistory";
-import { workProjects } from "../../config/workProjects";
 
 export default function WorkHistoryPage() {
+  const { pageContent, workHistory, workProjects } = useSiteContent();
   return (
     <div className="max-w-4xl py-8 sm:py-16">
       <section>

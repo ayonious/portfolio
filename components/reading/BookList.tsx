@@ -1,9 +1,13 @@
-import { linkContent } from "../../config/siteContent";
+"use client";
+
+import { useSiteContent } from "../ContentProvider";
+
 import HeadingLink from "../HeadingLink";
 import type { Book } from "../../config/books";
 import TopicTags from "../TopicTags";
 
 export default function BookList({ books }: { books: Book[] }) {
+  const { linkContent } = useSiteContent();
   return (
     <ul className="mt-5 divide-y divide-slate-200 border-y border-slate-200 dark:divide-slate-700 dark:border-slate-700">
       {books.map((book) => (

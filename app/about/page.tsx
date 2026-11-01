@@ -1,10 +1,14 @@
+"use client";
+
+import { useSiteContent } from "../../components/ContentProvider";
 import Image from "next/image";
 import InlineLink from "../../components/InlineLink";
-import { aboutContent } from "../../config/siteContent";
+
 import BrandIcon from "../../components/BrandIcon";
 import ContactForm from "../../components/about/ContactForm";
 
 export default function AboutPage() {
+  const { aboutContent } = useSiteContent();
   return (
     <div className="max-w-4xl py-8 sm:py-16">
       <section className="grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_18rem]">

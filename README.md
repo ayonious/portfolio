@@ -236,3 +236,41 @@ See [Storybook's Next.js/Vite guide](https://storybook.js.org/docs/get-started/f
 and [Vercel's build settings](https://vercel.com/docs/builds/configure-a-build).
 
 </details>
+
+### Languages on subdomains
+
+The site uses `next-intl` with request-scoped configuration in `i18n/request.ts`.
+The Host header selects an exact hostname from `config/internationalization.ts`;
+unknown hosts use English. Browser language and locale cookies do not override the
+subdomain. Routes keep the same paths, for example `/work` in both languages.
+
+For local development, open `http://localhost:3000` or
+`http://en.localhost:3000` for English and `http://de.localhost:3000` for German.
+The sidebar language links preserve the current path, query, fragment, and port.
+They appear only on configured domains.
+
+Production is configured for `en.nahiyan.de` and `de.nahiyan.de`, with
+`nahiyan.de` and `www.nahiyan.de` as English aliases. These names follow the live
+portfolio URL in `config/projects.ts`. Configure DNS, hosting, and HTTPS for the
+new subdomains before using the language links in production.
+
+For another deployment, add a group to `domainGroups`:
+
+```ts
+{ en: "en.your-domain.com", de: "de.your-domain.com" },
+```
+
+To also serve English on the apex, add an exact alias to `domainAliases`, with
+`group` set to that group's zero-based index. Add all hostnames to the hosting
+provider, configure DNS, and provision HTTPS certificates. No DNS or hosting
+settings are changed by this repository.
+
+English content remains in the focused `config/` files. German overrides live in
+`config/locales/de.ts`; nested objects merge and arrays replace the full list.
+The German starter includes the homepage, navigation, selected page headings and
+introductions, metadata, and contact-form labels. Detailed project/work/book data
+and other untranslated text intentionally fall back to English. Expand that file
+to finish translating the content. `config/localizedContent.ts` builds the
+resolved content and next-intl message namespaces; `ContentProvider` makes these
+available to interactive components. Metadata and `<html lang>` follow the host.
+Pages render per request so locale content is not shared between domains.
