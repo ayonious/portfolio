@@ -32,6 +32,12 @@ export const programmingBooks: Book[] = [
     tags: ["Mathematics", "ComputerScience", "Algorithms"],
     url: "https://www.goodreads.com/en/book/show/112243.Concrete_Mathematics",
   },
+  {
+    title: "Discrete Mathematics and Its Applications",
+    authors: "Kenneth H. Rosen",
+    tags: ["Mathematics", "DiscreteMath", "ComputerScience"],
+    url: "https://www.goodreads.com/book/show/66553629-discrete-mathematics-and-its-applications",
+  },
 ];
 
 export const otherBooks: Book[] = [
