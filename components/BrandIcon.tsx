@@ -25,6 +25,8 @@ import {
   siFastify,
   siMarkdown,
   siHomebrew,
+  siJenkins,
+  siOpenjdk,
 
   siVercel,
   siTestinglibrary,
@@ -80,7 +82,7 @@ import {
   type SimpleIcon,
 } from "simple-icons";
 import type { CSSProperties } from "react";
-import { MailIcon } from "./icons/SidebarIcons";
+import { MailIcon, WrenchIcon } from "./icons/SidebarIcons";
 
 const icons: Record<string, SimpleIcon> = {
   "Vue.js": siVuedotjs,
@@ -109,6 +111,8 @@ const icons: Record<string, SimpleIcon> = {
   Fastify: siFastify,
   "Markdown": siMarkdown,
   "Homebrew": siHomebrew,
+  Jenkins: siJenkins,
+  Java: siOpenjdk,
 
   Vercel: siVercel,
   "React Testing Library": siTestinglibrary,
@@ -169,7 +173,7 @@ const icons: Record<string, SimpleIcon> = {
   Yarn: siYarn,
 };
 
-export const brandNames = [...Object.keys(icons), "LinkedIn", "email login"];
+export const brandNames = [...Object.keys(icons), "LinkedIn", "Slack API", "email login"];
 
 type BrandIconProps = {
   name: string;
@@ -177,6 +181,10 @@ type BrandIconProps = {
 };
 
 export default function BrandIcon({ name, className = "h-5 w-5" }: BrandIconProps) {
+  if (name === "Slack API") {
+    return <WrenchIcon className={className} />;
+  }
+
   if (name === "email login") {
     return <MailIcon className={className} />;
   }
