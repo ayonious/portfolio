@@ -19,11 +19,14 @@ export const workHistory: WorkHistoryEntry[] = [
     end: "Present",
     technologies: ["Node.js", "TypeScript", "React", "React Native", "AI"],
     highlights: [
-      "Leading the migration of web, mobile, and backend authentication to one centralized platform.",
-      "Maintaining identity and access management systems, including OAuth and SSO.",
-      "Maintaining payment services and developing live-update services used by millions of travelers.",
-      "Supporting shared Node.js packages and mentoring teams integrating the authentication platform.",
-      "Creating AI-assisted engineering automation, skills, and MCP servers, and supporting technical hiring.",
+      "Leading the ongoing migration of web, React Native, and Node.js authentication to one centralized platform.",
+      "Maintaining OAuth and SSO identity services used by more than 100,000 people per day.",
+      "Developing live-update microservices that handle about 20,000 requests per second.",
+      "Created authentication and payment microfrontends used by more than 20 internal teams.",
+      "Maintaining shared Node.js packages for database access, logging, and Node.js version control across more than 20 internal teams.",
+      "Mentoring teammates and engineers across the company as they integrate the authentication platform.",
+      "Training Codex and Claude Code agents for code editing, knowledge sharing, pull-request review, reusable skills, and MCP servers.",
+      "Helping recruit engineers and organize technical interviews.",
     ],
   },
   {
@@ -42,11 +45,14 @@ export const workHistory: WorkHistoryEntry[] = [
       "Spring Boot",
     ],
     highlights: [
-      "Built and maintained PCI-compliant financial and payment systems.",
+      "Built and maintained PCI-compliant payment services handling about 1,000 transactions per minute and serving more than 100,000 people per day.",
       "Integrated card payments, PayPal, Apple Pay, Google Pay, iDEAL, Klarna Sofort, Alipay, and WeChat Pay through Adyen and Braintree.",
-      "Built OAuth and SSO authentication flows for Google, Apple, Facebook, and email login.",
-      "Led password-based login and passwordless two-factor authentication implementations.",
-      "Built and maintained fraud-prevention capabilities.",
+      "Built tooling to reconcile about 100,000 payments per day across payment-provider platforms, external sellers, and payment scenarios.",
+      "Onboarded new payment service providers and trained the Payments Operations team to use the new payments back office.",
+      "Created a booking back office that enabled non-technical operations teams to manage booking and payment operations.",
+      "Built and maintained Google, Apple, Facebook, and email login flows with OAuth and SSO, serving at least 50,000 people per day.",
+      "Led the end-to-end delivery of password login and passwordless two-factor authentication, bringing the hacker-attack rate below 0.001%.",
+      "Built and maintained fraud-prevention capabilities that kept the fraud rate below 5%.",
     ],
   },
   {
@@ -69,7 +75,7 @@ export const workHistory: WorkHistoryEntry[] = [
     highlights: [
       "Added functionality for surfacing user-generated content.",
       "Built post-sales features for offering additional products and extras after booking.",
-      "Created more than 30 experiments measuring bookings, turnover, performance, and other business metrics.",
+      "Created more than 30 experiments running across millions of users per day to measure bookings, turnover, performance, and other business metrics.",
     ],
   },
 ];

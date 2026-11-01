@@ -34,16 +34,10 @@ export const aiCapabilities = [
 
 export const aiWork = [
   {
-    title: "LLM travel guide",
-    description:
-      "Built the backend for an LLM-powered travel guide and integrated generated recommendations into a production traveler experience.",
-    scale: "Production traveler-facing feature",
-  },
-  {
     title: "AI-powered live travel recommendations",
     description:
       "Incorporated LLM-powered recommendations into notification and timetable services delivering live travel information.",
-    scale: "Services supporting millions of travelers and about 10,000 requests per second",
+    scale: "Services handling about 20,000 requests per second",
   },
   {
     title: "AI-assisted engineering automation",

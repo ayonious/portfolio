@@ -51,7 +51,7 @@ describe("site pages", () => {
     render(<AiPage />);
 
     expect(screen.getByRole("heading", { name: "AI" })).toBeTruthy();
-    expect(screen.getByText("LLM travel guide")).toBeTruthy();
+    expect(screen.getByText("AI-powered live travel recommendations")).toBeTruthy();
     expect(screen.getByText("Codex")).toBeTruthy();
     expect(screen.getByText("LLM product integration")).toBeTruthy();
   });
@@ -154,7 +154,9 @@ describe("site pages", () => {
 
     expect(screen.getByRole("heading", { name: "Work history" })).toBeTruthy();
     expect(screen.getByRole("heading", { name: "Selected work projects" })).toBeTruthy();
-    expect(screen.getAllByText("Documented service scale")).toHaveLength(7);
+    expect(screen.getAllByText("Documented service scale")).toHaveLength(8);
     expect(screen.getByText(/Built a centralized backend service/)).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "Payments reconciliation and PSP onboarding" })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "Booking and payments back office" })).toBeTruthy();
   });
 });
