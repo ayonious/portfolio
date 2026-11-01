@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "@jest/globals";
 import { ContentProvider } from "../components/ContentProvider";
 import LanguageSwitcher from "../components/LanguageSwitcher";
@@ -33,6 +33,8 @@ describe("subdomain internationalization", () => {
 
   it("shows language links with the current locale marked", () => {
     render(<ContentProvider site={resolveSite("localhost")}><LanguageSwitcher /></ContentProvider>);
+    expect(screen.queryByRole("link", { name: "Deutsch" })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Language" }));
     expect(screen.getByRole("link", { name: "Deutsch" })).toHaveAttribute("href", "http://de.localhost/");
     expect(screen.getByRole("link", { name: "English" })).toHaveAttribute("aria-current", "true");
   });

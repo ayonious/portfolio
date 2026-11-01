@@ -83,6 +83,7 @@ export default function ProfileSidebar() {
         <span>{sidebarContent.name}</span>
       </Link>
       <div className="ml-auto flex shrink-0 items-center">
+      <LanguageSwitcher />
       <ColorPalette />
       <ThemeToggle />
       <button
@@ -137,6 +138,7 @@ export default function ProfileSidebar() {
               <span>{sidebarContent.name}</span>
             </Link>
             <div className="ml-auto flex shrink-0 items-center lg:ml-0">
+              <LanguageSwitcher />
               <ColorPalette />
               <ThemeToggle />
               <button ref={closeButtonRef} type="button" onClick={closeMenu} aria-label={sidebarContent.closeMenuLabel} className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl text-[var(--accent)] hover:bg-[var(--accent-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] lg:hidden">
@@ -186,8 +188,6 @@ export default function ProfileSidebar() {
             );
           })}
         </nav>
-
-        <LanguageSwitcher />
 
         <div className="mt-8 flex flex-col items-center border-t border-slate-200 pt-5 dark:border-slate-700 lg:mt-auto">
           <div className="flex justify-center gap-2">

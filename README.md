@@ -287,8 +287,9 @@ curl -s --resolve en.nahiyan.de:3000:127.0.0.1 \
   http://en.nahiyan.de:3000/work | rg -o '<html lang="[^"]+"'
 ```
 
-Finally, click `English` or `Deutsch` in the local sidebar and confirm that the browser
-moves to the other subdomain while retaining the path, query string, and fragment.
+Finally, open the local language dropdown beside the color and theme controls,
+select `English` or `Deutsch`, and confirm that the browser moves to the other
+subdomain while retaining the path, query string, and fragment.
 
 Production is configured for `en.nahiyan.de` and `de.nahiyan.de`, with
 `nahiyan.de` and `www.nahiyan.de` as English aliases. These names follow the live
