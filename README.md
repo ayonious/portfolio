@@ -304,12 +304,15 @@ To also serve English on the apex, add an exact alias to `domainAliases`, with
 provider, configure DNS, and provision HTTPS certificates. No DNS or hosting
 settings are changed by this repository.
 
-English content remains in the focused `config/` files. German overrides live in
-`config/locales/de.ts`; nested objects merge and arrays replace the full list.
-The German starter includes the homepage, navigation, selected page headings and
-introductions, metadata, and contact-form labels. Detailed project/work/book data
-and other untranslated text intentionally fall back to English. Expand that file
-to finish translating the content. `config/localizedContent.ts` builds the
-resolved content and next-intl message namespaces; `ContentProvider` makes these
-available to interactive components. Metadata and `<html lang>` follow the host.
-Pages render per request so locale content is not shared between domains.
+English content remains in the focused `config/` files. Complete German overrides
+live in `config/locales/de.ts`; they cover page copy, controls, accessibility
+labels, work history, project narratives, open-source projects, skills, books,
+certifications, blog summaries, and site credits. Proper names, product names,
+technology names, and original book or article titles stay unchanged where that
+is clearer. Nested objects merge and arrays replace the full list, so English is
+still the safe fallback if a future German field is omitted.
+
+`config/localizedContent.ts` builds the resolved content and next-intl message
+namespaces; `ContentProvider` makes these available to interactive components.
+Metadata and `<html lang>` follow the host. Pages render per request so locale
+content is not shared between domains.

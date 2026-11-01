@@ -17,7 +17,7 @@ export default function CertificationsPage() {
           <ul className="divide-y divide-slate-200 border-y border-slate-200 dark:divide-slate-700 dark:border-slate-700">
             {certifications.filter((item) => item.category === section.category).map((certification) => (
               <li key={certification.name}>
-                <CertificationItem certification={certification} completedLabel={section.statusLabel} dateLabel={section.dateLabel} />
+                <CertificationItem certification={certification} completedLabel={section.statusLabel} dateLabel={section.dateLabel} resultLabel={pageContent.certifications.resultLabel} />
               </li>
             ))}
           </ul>

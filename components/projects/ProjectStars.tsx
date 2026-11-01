@@ -9,7 +9,7 @@ export default function ProjectStars({ stars, url }: { stars: number; url?: stri
   if (stars <= 0) return null;
 
   return (
-    <MetricBadge icon="GitHub" symbol="★" label={`${stars} GitHub stars`} href={url} linkLabel={pageContent.projects.openOnGitHub}>
+    <MetricBadge icon="GitHub" symbol="★" label={`${stars} ${pageContent.projects.githubStarsLabel}`} href={url} linkLabel={pageContent.projects.openOnGitHub}>
       {stars}
     </MetricBadge>
   );

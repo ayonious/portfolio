@@ -44,11 +44,16 @@ describe("subdomain internationalization", () => {
     } finally { domainGroups.pop(); }
   });
 
-  it("renders German with the actual next-intl provider and keeps untranslated content", () => {
+  it("renders German with the actual next-intl provider and translated structured content", () => {
     const site = resolveSite("de.localhost");
     const { rerender } = render(<ContentProvider site={site}><Introduction /></ContentProvider>);
     expect(screen.getByRole("heading", { name: "Hallo, ich bin Nahiyan!" })).toBeInTheDocument();
-    expect(site.content.linkContent.openWebsite).toBe(resolveSite(null).content.linkContent.openWebsite);
+    expect(site.content.linkContent.openWebsite).toBe("Website öffnen");
+    expect(site.content.workHistory[0].highlights[0]).toMatch(/Migration/);
+    expect(site.content.workProjects[0].title).toBe("Zentraler E-Mail-Dienst");
+    expect(site.content.openSourceProjectsConfig.profile.projects[0].description).toMatch(/Huffman-Codierung/);
+    expect(site.content.featuredBlogPosts[1].title).toBe("Eine geheime Nachricht senden");
+    expect(site.content.majorDependencies[0].description).toMatch(/Anwendungsframework/);
     rerender(<ContentProvider site={resolveSite("localhost")}><Introduction /></ContentProvider>);
     expect(screen.getByRole("heading", { name: "Hey, I'm Nahiyan!" })).toBeInTheDocument();
     expect(resolveSite("de.localhost").content.homeContent.title).toBe("Hallo, ich bin Nahiyan!");

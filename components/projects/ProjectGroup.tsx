@@ -38,7 +38,7 @@ export default function ProjectGroup({ label, limit, onlyPinned, projects, descr
       {description && <p className="mt-2 max-w-3xl text-slate-600 dark:text-slate-300">{description}</p>}
       {showStats && (
         <p className="mt-2 flex flex-wrap items-center gap-2 text-slate-600 dark:text-slate-300">
-          <span>{visibleProjects.length} projects</span>
+          <span>{visibleProjects.length} {pageContent.projects.projectsLabel}</span>
           {totalStars > 0 && <><span aria-hidden="true">·</span><ProjectStars stars={totalStars} url={url} /></>}
           {downloadStat && (
             <>
@@ -52,7 +52,7 @@ export default function ProjectGroup({ label, limit, onlyPinned, projects, descr
         <ul className="mt-6 divide-y divide-slate-200 border-y border-slate-200 dark:divide-slate-700 dark:border-slate-700">
           {visibleProjects.map((project) => {
             const technologies = getProjectTechnologies(project);
-            const linkLabel = project.url.includes("github.com") ? "Open in GitHub" : "Open project";
+            const linkLabel = project.url.includes("github.com") ? pageContent.projects.openOnGitHub : pageContent.projects.openProject;
             return (
               <ScrollReveal as="li" key={project.url} className="flex min-w-0 items-center gap-3 py-2.5 text-sm">
                 <HeadingLink href={project.url} tooltip={linkLabel} className="min-w-0 font-semibold">
@@ -60,7 +60,7 @@ export default function ProjectGroup({ label, limit, onlyPinned, projects, descr
                 </HeadingLink>
                 <ProjectStars stars={project.stars} url={project.url} />
                 {technologies.length > 0 && (
-                  <span className="ml-auto hidden shrink-0 items-center gap-2 sm:inline-flex" aria-label="Technologies used">
+                  <span className="ml-auto hidden shrink-0 items-center gap-2 sm:inline-flex" aria-label={pageContent.projects.technologiesUsedLabel}>
                     {technologies.map((technology) => (
                       <span key={technology} title={technology} className="inline-flex items-center">
                         <BrandIcon name={technology} className="h-[1.05rem] w-[1.05rem]" />

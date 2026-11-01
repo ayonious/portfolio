@@ -156,7 +156,7 @@ export default function ProfileSidebar() {
         </div>
 
         <nav
-          aria-label="Main navigation"
+          aria-label={sidebarContent.mainNavigationLabel}
           className="mx-auto mt-5 flex w-max max-w-full flex-col gap-2 lg:mx-0 lg:mt-8 lg:w-full lg:max-w-none"
         >
           {sidebarContent.navigation.map(({ href, label, icon }) => {
@@ -197,11 +197,11 @@ export default function ProfileSidebar() {
                 href={link.url}
                 target={link.url.startsWith("http") ? "_blank" : undefined}
                 rel={link.url.startsWith("http") ? "noreferrer" : undefined}
-                aria-label={link.label === "Mail" ? "Open contact form" : `Open ${link.label} profile`}
-                title={link.label === "Mail" ? "Open contact form" : `Open ${link.label} profile`}
+                aria-label={link.url.startsWith("/about#contact") ? sidebarContent.openContactFormLabel : `${sidebarContent.openProfilePrefix} ${link.label} ${sidebarContent.openProfileSuffix}`}
+                title={link.url.startsWith("/about#contact") ? sidebarContent.openContactFormLabel : `${sidebarContent.openProfilePrefix} ${link.label} ${sidebarContent.openProfileSuffix}`}
                 className="group relative flex h-10 w-10 items-center justify-center rounded-xl no-underline transition-[background-color,translate,scale] duration-200 ease-out hover:bg-[var(--accent-soft)] motion-safe:hover:-translate-y-1 motion-safe:hover:scale-110 motion-safe:focus-visible:-translate-y-1 motion-safe:focus-visible:scale-110 motion-reduce:transition-none"
               >
-                {link.label === "Mail" ? (
+                {link.url.startsWith("/about#contact") ? (
                   <MailIcon className="h-5 w-5 text-[var(--accent)]" />
                 ) : (
                   <BrandIcon name={link.label} className="h-5 w-5" />
