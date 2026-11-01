@@ -47,7 +47,7 @@ export const workProjects: WorkProject[] = [
   },
   {
     title: "Payments reconciliation and PSP onboarding",
-    technologies: ["Payment reconciliation", "PSP integrations", "Back-office tooling"],
+    technologies: ["Node.js", "TypeScript", "Slack API", "Jenkins"],
     situation: "Payments had to be reconciled across payment-provider platforms, external sellers, and a wide range of payment outcomes.",
     task: "Create reliable operational tooling for reconciliation and make new payment service providers usable by the Payments Operations team.",
     action: "Built reconciliation tooling covering the payment lifecycle, onboarded new payment service providers, and trained the Payments Operations team on the new payments back office.",
