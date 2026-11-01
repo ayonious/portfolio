@@ -56,7 +56,7 @@ export const workProjects: WorkProject[] = [
   },
   {
     title: "Booking and payments back office",
-    technologies: ["Operational tooling", "Payments", "Bookings"],
+    technologies: ["React", "TypeScript", "Java"],
     situation: "Non-technical operations teams needed a safe way to handle booking and payment tasks without engineering support.",
     task: "Provide one operational interface for back-office actions on bookings and their payments.",
     action: "Created a booking back office for operational teams to inspect bookings and perform the required booking and payment operations.",

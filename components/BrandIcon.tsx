@@ -26,6 +26,7 @@ import {
   siMarkdown,
   siHomebrew,
   siJenkins,
+  siOpenjdk,
 
   siVercel,
   siTestinglibrary,
@@ -111,6 +112,7 @@ const icons: Record<string, SimpleIcon> = {
   "Markdown": siMarkdown,
   "Homebrew": siHomebrew,
   Jenkins: siJenkins,
+  Java: siOpenjdk,
 
   Vercel: siVercel,
   "React Testing Library": siTestinglibrary,
