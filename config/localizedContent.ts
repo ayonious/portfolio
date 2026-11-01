@@ -1,6 +1,6 @@
 import { defaultContent, type ContentOverrides, type SiteContent } from "./content";
 import { germanContent } from "./locales/de";
-import { languageContent, resolveDomain, type Locale } from "./internationalization";
+import { isLocalDevelopmentHost, languageContent, resolveDomain, type Locale } from "./internationalization";
 
 export function mergeContent<T>(base: T, override?: ContentOverrides<T>): T {
   if (override === undefined) return base;
@@ -23,6 +23,12 @@ export function messagesForLocale(locale: Locale) {
 
 export function resolveSite(host: string | null) {
   const { locale, domains } = resolveDomain(host);
-  return { locale, domains, content: contentForLocale(locale), messages: messagesForLocale(locale) };
+  return {
+    locale,
+    domains,
+    showLanguageSwitcher: isLocalDevelopmentHost(host),
+    content: contentForLocale(locale),
+    messages: messagesForLocale(locale),
+  };
 }
 export type ResolvedSite = ReturnType<typeof resolveSite>;

@@ -7,10 +7,10 @@ import { languageContent, languageUrl, supportedLocales } from "../config/intern
 
 export default function LanguageSwitcher() {
   const pathname = usePathname();
-  const { locale, domains } = useSite();
+  const { locale, domains, showLanguageSwitcher } = useSite();
   const [currentUrl, setCurrentUrl] = useState<string>();
   useEffect(() => { setCurrentUrl(window.location.href); }, [pathname]);
-  if (!domains || !currentUrl) return null;
+  if (!showLanguageSwitcher || !domains || !currentUrl) return null;
   const labels = languageContent[locale];
   return (
     <div aria-label={labels.label} className="mt-4 flex flex-wrap justify-center gap-2">

@@ -247,7 +247,9 @@ subdomain. Routes keep the same paths, for example `/work` in both languages.
 For local development, open `http://localhost:3000` or
 `http://en.localhost:3000` for English and `http://de.localhost:3000` for German.
 The sidebar language links preserve the current path, query, fragment, and port.
-They appear only on configured domains.
+They are local testing controls and appear only on `localhost`, `en.localhost`,
+and `de.localhost`. Production domains select their language from the hostname
+without displaying these controls.
 
 #### Testing different domains locally
 
@@ -285,13 +287,14 @@ curl -s --resolve en.nahiyan.de:3000:127.0.0.1 \
   http://en.nahiyan.de:3000/work | rg -o '<html lang="[^"]+"'
 ```
 
-Finally, click `English` or `Deutsch` in the sidebar and confirm that the browser
+Finally, click `English` or `Deutsch` in the local sidebar and confirm that the browser
 moves to the other subdomain while retaining the path, query string, and fragment.
 
 Production is configured for `en.nahiyan.de` and `de.nahiyan.de`, with
 `nahiyan.de` and `www.nahiyan.de` as English aliases. These names follow the live
 portfolio URL in `config/projects.ts`. Configure DNS, hosting, and HTTPS for the
-new subdomains before using the language links in production.
+new subdomains before serving them in production. The language-switcher controls
+remain hidden there.
 
 For another deployment, add a group to `domainGroups`:
 

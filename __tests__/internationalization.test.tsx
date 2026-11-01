@@ -37,6 +37,15 @@ describe("subdomain internationalization", () => {
     expect(screen.getByRole("link", { name: "English" })).toHaveAttribute("aria-current", "true");
   });
 
+  it("hides testing language links on production domains", () => {
+    const productionSite = resolveSite("de.nahiyan.de");
+    expect(productionSite.locale).toBe("de");
+    expect(productionSite.showLanguageSwitcher).toBe(false);
+    render(<ContentProvider site={productionSite}><LanguageSwitcher /></ContentProvider>);
+    expect(screen.queryByRole("link", { name: "English" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Deutsch" })).not.toBeInTheDocument();
+  });
+
   it("supports configured production groups without crossing deployments", () => {
     domainGroups.push({ en: "en.example.com", de: "de.example.com" });
     try {

@@ -23,6 +23,11 @@ export function normalizeHost(host: string | null) {
   return (host ?? "").trim().toLowerCase().replace(/:\d+$/, "").replace(/\.$/, "");
 }
 
+export function isLocalDevelopmentHost(host: string | null) {
+  const hostname = normalizeHost(host);
+  return hostname === "localhost" || hostname.endsWith(".localhost");
+}
+
 export function resolveDomain(host: string | null) {
   const hostname = normalizeHost(host);
   for (const group of domainGroups) {
