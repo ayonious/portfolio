@@ -237,21 +237,15 @@ and [Vercel's build settings](https://vercel.com/docs/builds/configure-a-build).
 
 </details>
 
-### Languages on subdomains
+### Languages
 
 The site uses `next-intl` with request-scoped configuration in `i18n/request.ts`.
-The Host header selects an exact hostname from `config/internationalization.ts`;
-unknown hosts use English. Browser language and locale cookies do not override the
-subdomain. Routes keep the same paths, for example `/work` in both languages.
+Every page has a locale prefix: English uses `/en` and German uses `/de`, for
+example `/en/work` and `/de/work`. Requests without a prefix redirect to the
+equivalent English URL. The language switcher is available in local, QA, and
+production environments and keeps the current page when changing language.
 
-For local development, open `http://localhost:3000` or
-`http://en.localhost:3000` for English and `http://de.localhost:3000` for German.
-The sidebar language links preserve the current path, query, fragment, and port.
-They are local testing controls and appear only on `localhost`, `en.localhost`,
-and `de.localhost`. Production domains select their language from the hostname
-without displaying these controls.
-
-#### Testing different domains locally
+#### Testing languages locally
 
 Start the development server:
 
@@ -259,54 +253,15 @@ Start the development server:
 yarn dev
 ```
 
-Then test the configured local domains in a browser. Use the same path on each
-domain to confirm that switching languages keeps the current page:
-
-```text
-http://en.localhost:3000/work
-http://de.localhost:3000/work
-```
-
-You can verify host selection without a browser by sending explicit Host headers.
-The first command should return `<html lang="de">`; the second and third should
-return `<html lang="en">`, including the safe fallback for an unknown domain:
+Open the language dropdown beside the color and theme controls and select
+`English` or `Deutsch`. You can verify the URL behavior with `curl`:
 
 ```sh
-curl -s -H 'Host: de.localhost:3000' http://127.0.0.1:3000 | rg -o '<html lang="[^"]+"'
-curl -s -H 'Host: en.localhost:3000' http://127.0.0.1:3000 | rg -o '<html lang="[^"]+"'
-curl -s -H 'Host: unknown.example:3000' http://127.0.0.1:3000 | rg -o '<html lang="[^"]+"'
+curl -s http://127.0.0.1:3000/en/work | rg -o '<html lang="[^"]+"'
+curl -s http://127.0.0.1:3000/de/work | rg -o '<html lang="[^"]+"'
 ```
 
-To exercise the production hostname mapping against the local server before DNS
-is configured, override DNS for that one `curl` request:
-
-```sh
-curl -s --resolve de.nahiyan.de:3000:127.0.0.1 \
-  http://de.nahiyan.de:3000/work | rg -o '<html lang="[^"]+"'
-curl -s --resolve en.nahiyan.de:3000:127.0.0.1 \
-  http://en.nahiyan.de:3000/work | rg -o '<html lang="[^"]+"'
-```
-
-Finally, open the local language dropdown beside the color and theme controls,
-select `English` or `Deutsch`, and confirm that the browser moves to the other
-subdomain while retaining the path, query string, and fragment.
-
-Production is configured for `en.nahiyan.de` and `de.nahiyan.de`, with
-`nahiyan.de` and `www.nahiyan.de` as English aliases. These names follow the live
-portfolio URL in `config/projects.ts`. Configure DNS, hosting, and HTTPS for the
-new subdomains before serving them in production. The language-switcher controls
-remain hidden there.
-
-For another deployment, add a group to `domainGroups`:
-
-```ts
-{ en: "en.your-domain.com", de: "de.your-domain.com" },
-```
-
-To also serve English on the apex, add an exact alias to `domainAliases`, with
-`group` set to that group's zero-based index. Add all hostnames to the hosting
-provider, configure DNS, and provision HTTPS certificates. No DNS or hosting
-settings are changed by this repository.
+The first response is English and the second is German.
 
 English content remains in the focused `config/` files. Complete German overrides
 live in `config/locales/de.ts`; they cover page copy, controls, accessibility
@@ -318,5 +273,5 @@ still the safe fallback if a future German field is omitted.
 
 `config/localizedContent.ts` builds the resolved content and next-intl message
 namespaces; `ContentProvider` makes these available to interactive components.
-Metadata and `<html lang>` follow the host. Pages render per request so locale
-content is not shared between domains.
+Metadata and `<html lang>` follow the selected locale. Pages render per request
+so each visitor receives the content matching the URL.

@@ -3,15 +3,16 @@ import type { ReactNode } from "react";
 import ProfileSidebar from "../components/ProfileSidebar";
 import { headers } from "next/headers";
 import { resolveSite } from "../config/localizedContent";
+import { localeHeader } from "../config/internationalization";
 import { ContentProvider } from "../components/ContentProvider";
 import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return resolveSite((await headers()).get("host")).content.siteMetadata;
+  return resolveSite((await headers()).get(localeHeader)).content.siteMetadata;
 }
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
-  const site = resolveSite((await headers()).get("host"));
+  const site = resolveSite((await headers()).get(localeHeader));
   return (
     <html lang={site.locale}>
       <body>

@@ -242,6 +242,11 @@ export const aboutSiteContent = {
         description:
           "Cloudflare Turnstile helps protect the contact form from automated spam. It usually checks your browser automatically and may ask you to tick a checkbox. Before sending your message, the site checks that this verification passed. This helps keep unwanted messages out of my inbox.",
       },
+      {
+        title: "Browser preferences",
+        description:
+          "The theme and accent-color controls save your choices in your browser's localStorage so they can be restored on your next visit. These preferences stay on your device and are not used for analytics, advertising, or tracking.",
+      },
     ],
   },
   creditsTitle: "Design and assets",

@@ -47,6 +47,14 @@ export function MailIcon(props: IconProps) {
   );
 }
 
+export function CheckIcon(props: IconProps) {
+  return (
+    <svg {...sharedProps} height={16} strokeWidth={2.25} width={16} {...props}>
+      <path d="m5 12 4 4 10-10" />
+    </svg>
+  );
+}
+
 export function TheaterMaskIcon(props: IconProps) {
   return (
     <svg {...sharedProps} height={24} strokeWidth={1} width={24} {...props}>

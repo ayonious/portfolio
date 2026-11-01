@@ -1,6 +1,6 @@
 "use client";
 
-import { useSiteContent } from "./ContentProvider";
+import { useSite, useSiteContent } from "./ContentProvider";
 
 import LanguageSwitcher from "./LanguageSwitcher";
 import InlineLink from "./InlineLink";
@@ -12,6 +12,7 @@ import ColorPalette from "./ColorPalette";
 import ThemeToggle from "./ThemeToggle";
 import BrandIcon from "./BrandIcon";
 import { type NavigationIcon } from "../config/siteContent";
+import { localizedPath } from "../config/internationalization";
 import {
   BooksIcon,
   BriefcaseIcon,
@@ -42,6 +43,7 @@ const navigationIcons: Record<NavigationIcon, typeof BriefcaseIcon> = {
 
 export default function ProfileSidebar() {
   const { sidebarContent } = useSiteContent();
+  const { locale } = useSite();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -78,7 +80,7 @@ export default function ProfileSidebar() {
   return (
     <>
     <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-4 py-2 dark:border-slate-700 sm:px-8 lg:hidden">
-      <Link href="/" className="flex items-center gap-2 text-xl font-bold text-slate-950 no-underline dark:text-slate-50">
+      <Link href={localizedPath("/", locale)} className="flex items-center gap-2 text-xl font-bold text-slate-950 no-underline dark:text-slate-50">
         <SailboatIcon className="shrink-0" />
         <span>{sidebarContent.name}</span>
       </Link>
@@ -132,7 +134,7 @@ export default function ProfileSidebar() {
           <div className="-mx-4 flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-4 py-2 dark:border-slate-700 sm:-mx-8 sm:px-8 lg:mx-0 lg:gap-3 lg:px-0 lg:pt-0 lg:pb-5">
             <Link
               className="flex items-center gap-2 text-xl font-bold text-slate-950 no-underline dark:text-slate-50 lg:text-2xl"
-              href="/"
+              href={localizedPath("/", locale)}
             >
               <SailboatIcon className="shrink-0" />
               <span>{sidebarContent.name}</span>
@@ -149,7 +151,7 @@ export default function ProfileSidebar() {
           <p className="mt-5 border-b border-slate-200 pb-5 text-slate-600 dark:border-slate-700 dark:text-slate-300 lg:max-w-xs">
             {sidebarContent.introduction.textBefore}
             <InlineLink
-              href="/about"
+                href={localizedPath("/about", locale)}
             >
               {sidebarContent.introduction.linkText}
             </InlineLink>
@@ -179,7 +181,7 @@ export default function ProfileSidebar() {
             return (
               <Link
                 key={href}
-                href={href}
+                href={localizedPath(href, locale)}
                 className={className}
                 aria-current={isActive ? "page" : undefined}
               >
@@ -194,7 +196,7 @@ export default function ProfileSidebar() {
             {sidebarContent.socialLinks.map((link) => (
               <a
                 key={link.url}
-                href={link.url}
+                href={localizedPath(link.url, locale)}
                 target={link.url.startsWith("http") ? "_blank" : undefined}
                 rel={link.url.startsWith("http") ? "noreferrer" : undefined}
                 aria-label={link.url.startsWith("/about#contact") ? sidebarContent.openContactFormLabel : `${sidebarContent.openProfilePrefix} ${link.label} ${sidebarContent.openProfileSuffix}`}

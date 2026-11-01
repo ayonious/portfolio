@@ -1,4 +1,4 @@
-import type { ContentOverrides, SiteContent } from "../content";
+import { defaultContent, mergeContent, type ContentOverrides, type SiteContent } from "../content";
 import { otherBooks, programmingBooks } from "../books";
 import { openSourceProjectsConfig } from "../projects";
 import { skillGroups } from "../skills";
@@ -81,7 +81,7 @@ const germanProjects = {
   },
 };
 
-export const germanContent: ContentOverrides<SiteContent> = {
+const germanOverrides: ContentOverrides<SiteContent> = {
   siteMetadata: {
     title: "Nahiyan Kamal — Softwareentwickler",
     description: "Persönliches Portfolio von Nahiyan Kamal, Senior Fullstack Software Engineer in München.",
@@ -185,6 +185,7 @@ export const germanContent: ContentOverrides<SiteContent> = {
         { title: "Vercel Function", description: "Der Route Handler /api/contact wird zu einer bedarfsgesteuerten Vercel Function. Sie startet beim Absenden des Formulars, prüft die Anfrage und endet nach deren Verarbeitung. Eine Ratenbegrenzung der Vercel Firewall schützt den Endpunkt, bevor zu viele Anfragen die Function erreichen." },
         { title: "E-Mail-Versand mit Resend", description: "Die serverseitige Function verwendet einen privaten Resend-API-Schlüssel, um Name, E-Mail-Adresse und Nachricht an das konfigurierte Kontaktpostfach zu senden. Die Adresse der absendenden Person wird als Antwortadresse verwendet." },
         { title: "Cloudflare Turnstile", description: "Cloudflare Turnstile schützt das Kontaktformular vor automatisiertem Spam. Die Prüfung erfolgt normalerweise automatisch und kann die Bestätigung eines Kontrollkästchens verlangen. Vor dem Versand prüft die Website, ob die Verifizierung erfolgreich war." },
+        { title: "Browser-Einstellungen", description: "Die Steuerungen für Design und Akzentfarbe speichern deine Auswahl im localStorage deines Browsers, damit sie beim nächsten Besuch wiederhergestellt werden kann. Diese Einstellungen bleiben auf deinem Gerät und werden nicht für Analysen, Werbung oder Tracking verwendet." },
       ],
     },
     creditsTitle: "Design und Ressourcen",
@@ -226,7 +227,7 @@ export const germanContent: ContentOverrides<SiteContent> = {
     { title: "Frameworks" },
     { title: "Datenbanken und Daten" },
     { title: "Cloud und Infrastruktur" },
-    { title: "Mobile Entwicklung", skills: ["React Native", "Swift mit KI-Unterstützung", "Kotlin mit KI-Unterstützung"] },
+    { title: "Mobile Entwicklung", skills: ["React Native", "Swift", "Kotlin"] },
     { title: "Frontend-Styling", skills: ["CSS", "Tailwind CSS", "Styled Components", "Material UI", "Atomic Design", "Wiederverwendbare Komponentenarchitektur"] },
     { title: "Tests und Werkzeuge" },
     { title: "KI", skills: ["Codex", "Claude Code", "Cursor", "ChatGPT", "MCP-Server"] },
@@ -377,3 +378,6 @@ export const germanContent: ContentOverrides<SiteContent> = {
     { description: "Liefert die einfarbigen Marken- und Technologiesymbole neben Profilen und erkannten Kenntnissen. Die Bibliothek steht unter CC0; Markenrechte und Nutzungsrichtlinien gelten weiterhin." },
   ]),
 };
+
+// Full German locale content with every field present after applying translations.
+export const germanContent: SiteContent = mergeContent<SiteContent>(defaultContent, germanOverrides);
