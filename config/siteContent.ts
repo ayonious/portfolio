@@ -49,7 +49,7 @@ export const sidebarContent = {
     green: "Green",
     blue: "Blue",
   },
-  name: "Nahiyan K",
+  name: "Nahiyan",
   introduction: {
     linkText: "Nahiyan",
     textBefore: "I'm ",
@@ -113,7 +113,7 @@ export const aboutContent = {
   ],
   image: {
     src: "/images/nahiyan-cartoon-profile.webp",
-    alt: "Cartoon portrait of Nahiyan K at a black-sand beach",
+    alt: "Cartoon portrait of Nahiyan at a black-sand beach",
   },
   contactForm: {
     title: "Send me a message",

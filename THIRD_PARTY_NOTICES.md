@@ -15,7 +15,7 @@ profiles and technologies and does not imply sponsorship or endorsement. See the
 
 ## LinkedIn
 
-The LinkedIn `[in]` mark is used only as a hyperlink to Nahiyan K's LinkedIn profile,
+The LinkedIn `[in]` mark is used only as a hyperlink to Nahiyan's LinkedIn profile,
 an allowed use for LinkedIn members under the official
 [`[in]` Logo guidelines](https://brand.linkedin.com/in-logo). The mark uses LinkedIn's
 approved blue and is not modified or used to imply affiliation or endorsement.
@@ -23,7 +23,7 @@ LinkedIn and the `[in]` mark are trademarks of LinkedIn Corporation and its affi
 
 ## GitHub
 
-The GitHub mark is used as a social button linking to Nahiyan K's GitHub profile.
+The GitHub mark is used as a social button linking to Nahiyan's GitHub profile.
 GitHub permits this use under its official
 [logo guidelines](https://brand.github.com/foundations/logo). GitHub and the
 Invertocat logo are trademarks of GitHub, Inc.; their use does not imply endorsement.

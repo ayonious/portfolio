@@ -135,7 +135,7 @@ export const germanContent: ContentOverrides<SiteContent> = {
       { parts: [{ text: "Außerdem betreue ich " }, { text: "Open-Source-Werkzeuge", href: "/projects" }, { text: " 🛠️, entwickle " }, { text: "KI-gestützte Entwicklungsabläufe", href: "/ai" }, { text: " 🤖 und verwandle komplexe Systeme gerne in praktische, zuverlässige Software." }] },
       { parts: [{ text: "Außerhalb der Softwareentwicklung reise ich gern 🌍, lerne Sprachen 🗣️ und lese " }, { text: "Philosophie und Psychologie", href: "/reading" }, { text: " 🧠, um Menschen, Gesellschaft und die Welt besser zu verstehen." }] },
     ],
-    image: { alt: "Gezeichnetes Porträt von Nahiyan K an einem schwarzen Sandstrand" },
+    image: { alt: "Gezeichnetes Porträt von Nahiyan an einem schwarzen Sandstrand" },
     contactForm: {
       title: "Schreib mir",
       introduction: "Du hast eine Idee, Frage oder Gelegenheit, über die wir sprechen sollten? Schreib mir eine Nachricht.",
