@@ -1,4 +1,5 @@
-import { defaultContent, mergeContent, type ContentOverrides, type SiteContent } from "../content";
+import { mergeContent, type ContentOverrides, type SiteContent } from "../content";
+import { englishContent } from "./en";
 import { otherBooks, programmingBooks } from "../books";
 import { openSourceProjectsConfig } from "../projects";
 import { skillGroups } from "../skills";
@@ -380,4 +381,4 @@ const germanOverrides: ContentOverrides<SiteContent> = {
 };
 
 // Full German locale content with every field present after applying translations.
-export const germanContent: SiteContent = mergeContent<SiteContent>(defaultContent, germanOverrides);
+export const germanContent: SiteContent = mergeContent<SiteContent>(englishContent, germanOverrides);
