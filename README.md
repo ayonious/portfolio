@@ -249,6 +249,45 @@ For local development, open `http://localhost:3000` or
 The sidebar language links preserve the current path, query, fragment, and port.
 They appear only on configured domains.
 
+#### Testing different domains locally
+
+Start the development server:
+
+```sh
+yarn dev
+```
+
+Then test the configured local domains in a browser. Use the same path on each
+domain to confirm that switching languages keeps the current page:
+
+```text
+http://en.localhost:3000/work
+http://de.localhost:3000/work
+```
+
+You can verify host selection without a browser by sending explicit Host headers.
+The first command should return `<html lang="de">`; the second and third should
+return `<html lang="en">`, including the safe fallback for an unknown domain:
+
+```sh
+curl -s -H 'Host: de.localhost:3000' http://127.0.0.1:3000 | rg -o '<html lang="[^"]+"'
+curl -s -H 'Host: en.localhost:3000' http://127.0.0.1:3000 | rg -o '<html lang="[^"]+"'
+curl -s -H 'Host: unknown.example:3000' http://127.0.0.1:3000 | rg -o '<html lang="[^"]+"'
+```
+
+To exercise the production hostname mapping against the local server before DNS
+is configured, override DNS for that one `curl` request:
+
+```sh
+curl -s --resolve de.nahiyan.de:3000:127.0.0.1 \
+  http://de.nahiyan.de:3000/work | rg -o '<html lang="[^"]+"'
+curl -s --resolve en.nahiyan.de:3000:127.0.0.1 \
+  http://en.nahiyan.de:3000/work | rg -o '<html lang="[^"]+"'
+```
+
+Finally, click `English` or `Deutsch` in the sidebar and confirm that the browser
+moves to the other subdomain while retaining the path, query string, and fragment.
+
 Production is configured for `en.nahiyan.de` and `de.nahiyan.de`, with
 `nahiyan.de` and `www.nahiyan.de` as English aliases. These names follow the live
 portfolio URL in `config/projects.ts`. Configure DNS, hosting, and HTTPS for the
