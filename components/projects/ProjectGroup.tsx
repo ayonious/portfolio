@@ -78,7 +78,7 @@ export default function ProjectGroup({ label, limit, onlyPinned, projects, descr
         </ul>
       ) : (
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          {visibleProjects.map((project, index) => <ScrollReveal key={project.url} delay={(index % 2) * 80}><ProjectCard project={project} /></ScrollReveal>)}
+          {visibleProjects.map((project, index) => <ScrollReveal key={project.url} delay={(index % 2) * 80} className="relative z-0 hover:z-20 focus-within:z-20"><ProjectCard project={project} /></ScrollReveal>)}
         </div>
       )}
     </section>
