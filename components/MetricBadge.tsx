@@ -22,10 +22,10 @@ export default function MetricBadge({ icon, label, children, symbol, href, linkL
   if (!href) return badge;
 
   return (
-    <a href={href} target="_blank" rel="noreferrer" title={linkLabel} className="hover-lift group relative z-20 inline-flex shrink-0 cursor-pointer rounded-full no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]">
+    <a href={href} target="_blank" rel="noreferrer" title={linkLabel} className="hover-lift group relative z-0 inline-flex shrink-0 cursor-pointer rounded-full no-underline hover:z-40 focus-visible:z-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]">
       {badge}
       {linkLabel && (
-        <span aria-hidden="true" className="sidebar-tooltip absolute bottom-full left-0 mb-2 w-max group-hover:opacity-100 group-focus-visible:opacity-100">
+        <span aria-hidden="true" className="sidebar-tooltip absolute bottom-full left-0 z-50 mb-2 w-max group-hover:opacity-100 group-focus-visible:opacity-100">
           {linkLabel}
         </span>
       )}
