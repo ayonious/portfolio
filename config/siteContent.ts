@@ -32,7 +32,24 @@ export const sidebarContent = {
   openMenuLabel: "Open navigation menu",
   closeMenuLabel: "Close navigation menu",
   menuLabel: "Navigation menu",
-  name: "Nahiyan K",
+  mainNavigationLabel: "Main navigation",
+  openContactFormLabel: "Open contact form",
+  openProfilePrefix: "Open",
+  openProfileSuffix: "profile",
+  switchToLightThemeLabel: "Switch to light theme",
+  switchToDarkThemeLabel: "Switch to dark theme",
+  chooseAccentColorLabel: "Choose accent color",
+  chooseColorPaletteLabel: "Choose color palette",
+  useAccentPrefix: "Use",
+  useAccentSuffix: "accent",
+  accentNames: {
+    lavender: "Lavender",
+    pink: "Pink",
+    amber: "Amber",
+    green: "Green",
+    blue: "Blue",
+  },
+  name: "Nahiyan",
   introduction: {
     linkText: "Nahiyan",
     textBefore: "I'm ",
@@ -96,7 +113,7 @@ export const aboutContent = {
   ],
   image: {
     src: "/images/nahiyan-cartoon-profile.webp",
-    alt: "Cartoon portrait of Nahiyan K at a black-sand beach",
+    alt: "Cartoon portrait of Nahiyan at a black-sand beach",
   },
   contactForm: {
     title: "Send me a message",
@@ -146,7 +163,11 @@ export const pageContent = {
     openInNpm: "Open in npm",
     openLink: "Open link",
     openOnGitHub: "Open on GitHub",
+    openProject: "Open project",
     viewOnGitHub: "View on GitHub →",
+    projectsLabel: "projects",
+    githubStarsLabel: "GitHub stars",
+    technologiesUsedLabel: "Technologies used",
   },
   skills: {
     title: "Skills",
@@ -180,6 +201,7 @@ export const pageContent = {
       { category: "course", title: "Courses", emoji: "📚", dateLabel: "Completed", statusLabel: "Completed" },
     ],
     completedLabel: "Completed",
+    resultLabel: "Result",
   },
   blog: {
     title: "Blog",
@@ -219,6 +241,11 @@ export const aboutSiteContent = {
         title: "Cloudflare Turnstile",
         description:
           "Cloudflare Turnstile helps protect the contact form from automated spam. It usually checks your browser automatically and may ask you to tick a checkbox. Before sending your message, the site checks that this verification passed. This helps keep unwanted messages out of my inbox.",
+      },
+      {
+        title: "Browser preferences",
+        description:
+          "The theme and accent-color controls save your choices in your browser's localStorage so they can be restored on your next visit. These preferences stay on your device and are not used for analytics, advertising, or tracking.",
       },
     ],
   },

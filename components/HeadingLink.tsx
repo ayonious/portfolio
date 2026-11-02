@@ -1,11 +1,14 @@
-import { linkContent } from "../config/siteContent";
+"use client";
+
+import { useSiteContent } from "./ContentProvider";
+
 import type { ComponentPropsWithRef } from "react";
 
 type HeadingLinkProps = ComponentPropsWithRef<"a"> & {
   tooltip?: string;
 };
 
-function destinationTooltip(href?: string) {
+function destinationTooltip(linkContent: ReturnType<typeof useSiteContent>["linkContent"], href?: string) {
   if (!href) return linkContent.openWebsite;
   try {
     const { hostname } = new URL(href);
@@ -18,7 +21,8 @@ function destinationTooltip(href?: string) {
 }
 
 export default function HeadingLink({ children, className = "", tooltip, ...props }: HeadingLinkProps) {
-  const tip = tooltip ?? destinationTooltip(props.href);
+  const { linkContent } = useSiteContent();
+  const tip = tooltip ?? destinationTooltip(linkContent, props.href);
   return (
     <a
       target="_blank"

@@ -1,0 +1,384 @@
+import { mergeContent, type ContentOverrides, type SiteContent } from "../content";
+import { englishContent } from "./en";
+import { otherBooks, programmingBooks } from "../books";
+import { openSourceProjectsConfig } from "../projects";
+import { skillGroups } from "../skills";
+import { aiCapabilities, aiTools, aiWork } from "../ai";
+import { workHistory } from "../workHistory";
+import { workProjects } from "../workProjects";
+import { certifications } from "../certifications";
+import { featuredBlogPosts } from "../blogPosts";
+import { majorDependencies } from "../siteCredits";
+
+function translated<T extends object>(items: readonly T[], changes: ReadonlyArray<Partial<T>>): T[] {
+  return items.map((item, index) => ({ ...item, ...(changes[index] ?? {}) }));
+}
+
+const germanProjects = {
+  profile: {
+    ...openSourceProjectsConfig.profile,
+    label: "Angeheftete persönliche Repositories",
+    description: "Eine Auswahl meiner angehefteten Repositories und langfristigen Experimente.",
+    projects: translated(openSourceProjectsConfig.profile.projects, [
+      { description: "Dateien mit Huffman-Codierung und dem LZW-Algorithmus komprimieren und entpacken." },
+      { description: "Beispiele zum Erlernen nützlicher Vagrant-Funktionen." },
+      { description: "Praxisnahe Beispiele für die Verwendung von Project Lombok." },
+      { description: "Beispiele für funktionale Programmierung, Streams, Funktionen und Prädikate in Java 8." },
+      { description: "Ein Parser, der in C und C++ geschriebenen Code formatiert." },
+      { description: "Eine regelbasierte Engine auf Grundlage von Entscheidungsbäumen." },
+      { description: "Eine Anwendung zur Anzeige zufällig erzeugter Namen." },
+      { description: "Ein Beispiel für den Theme-Wechsel mit React Context." },
+      { description: "Einfache Beispiele zum Erlernen von SaltStack." },
+      { description: "Mein persönlicher Technologie-Blog.", demoLabel: "Blog live lesen" },
+      { description: "Mein persönliches Portfolio mit Next.js, TypeScript und Tailwind CSS.", demoLabel: "Portfolio live ansehen" },
+      { description: "Die Bahnlinien einer Stadt als Git-Netzwerk darstellen." },
+      { description: "Beispiele zum Erlernen nützlicher Gradle-Funktionen." },
+      { description: "Eine Sammlung häufiger Fragen aus technischen Vorstellungsgesprächen.", demoLabel: "Interview-Leitfaden entdecken" },
+    ]),
+  },
+  gamified: {
+    ...openSourceProjectsConfig.gamified,
+    label: "Spielerische Projekte",
+    description: "Interaktive Oberflächen und visuelle Experimente, die technische Ideen spielerisch erlebbar machen.",
+    projects: translated(openSourceProjectsConfig.gamified.projects, [
+      { description: "Zufällig erzeugte Namen aus verschiedenen Regionen in einer interaktiven React-App entdecken.", demoLabel: "Random Names live ausprobieren" },
+      { description: "Einen kleinen Käfer durch eine zweidimensionale Welt bewegen und dabei Tastaturinteraktionen und Grenzen der Oberfläche erkunden.", demoLabel: "Explorer Bug spielen" },
+      { description: "Die Bahnlinien einer Stadt mithilfe von Graphentheorie und Git-Branches in einen navigierbaren Git-Netzwerkgraphen verwandeln.", demoLabel: "Bahnnetz erkunden" },
+    ]),
+  },
+  engineering: {
+    ...openSourceProjectsConfig.engineering,
+    label: "Für Softwareentwickler:innen",
+    description: "Praxisnahe Beispiele zum Erlernen von Bibliotheken und Entwicklungswerkzeugen.",
+    projects: translated(openSourceProjectsConfig.engineering.projects, [
+      { description: "Praxisnahe Java-Beispiele zum Erlernen von Project Lombok." },
+      { description: "Nützliche Vagrant-Funktionen anhand einfacher Beispiele üben." },
+    ]),
+  },
+  university: {
+    ...openSourceProjectsConfig.university,
+    label: "Animationsprojekte aus dem Studium",
+    description: "Grafik- und Animationsprojekte aus meinem Studium.",
+    projects: translated(openSourceProjectsConfig.university.projects, [
+      { description: "Die Lösung der Türme von Hanoi als Animation mit Java-Grafik ansehen." },
+      { description: "Ein OpenGL-Grafikprojekt, das die komplexe Architektur der Basilius-Kathedrale modelliert." },
+      { description: "Eine OpenGL-Szene mit Haushaltsgegenständen, Möbeln und Kamerabewegungen." },
+    ]),
+  },
+  organization: {
+    ...openSourceProjectsConfig.organization,
+    label: "Console-Table-Printer-Organisation",
+    description: "Open-Source-Werkzeuge und Dokumentation der Console-Table-Printer-Organisation mit Fokus auf gut lesbare Terminalausgaben.",
+    downloadStat: { ...openSourceProjectsConfig.organization.downloadStat, label: "3,4 Mio. Downloads/Woche", period: "Wöchentliche npm-Downloads" },
+    projects: translated(openSourceProjectsConfig.organization.projects, [
+      { description: "Farbige, gut lesbare Tabellen im Terminal ausgeben.", demoLabel: "Live-Dokumentation entdecken", downloadStat: { ...openSourceProjectsConfig.organization.projects[0].downloadStat!, label: "3,4 Mio. Downloads/Woche", period: "Wöchentliche npm-Downloads" } },
+      { description: "Eine einfache TypeScript-Implementierung der wcswidth-Funktion von Markus Kuhn.", downloadStat: { ...openSourceProjectsConfig.organization.projects[1].downloadStat!, label: "2,43 Mio. Downloads/Woche", period: "16.–22. Oktober 2026" } },
+      { description: "Ein Kommandozeilenwerkzeug zur Ausgabe von Tabellen im Terminal.", downloadStat: { ...openSourceProjectsConfig.organization.projects[2].downloadStat!, label: "91 Downloads/Woche", period: "16.–22. Oktober 2026" } },
+      { description: "Dokumentation für Console Table Printer." },
+      { description: "Eine Chrome-Erweiterung zum Formatieren von JSON." },
+      { description: "End-to-End-Tests für die Pakete und Websites der Organisation." },
+      { description: "Das Homebrew-Tap zur Installation der Console Table CLI." },
+    ]),
+  },
+};
+
+const germanOverrides: ContentOverrides<SiteContent> = {
+  siteMetadata: {
+    title: "Nahiyan Kamal — Softwareentwickler",
+    description: "Persönliches Portfolio von Nahiyan Kamal, Senior Fullstack Software Engineer in München.",
+  },
+  homeContent: {
+    location: "München, Deutschland",
+    title: "Hallo, ich bin Nahiyan!",
+    introduction: "Ich bin Senior Fullstack Software Engineer und entwickle zuverlässige Web- und Mobile-Produkte mit TypeScript, React, React Native und Node.js.",
+    currentWork: "Zurzeit arbeite ich bei Omio an Authentifizierung, Zahlungen und Diensten für Reisende auf der ganzen Welt.",
+    openSource: "Außerdem entwickle ich Open-Source-Werkzeuge und spielerische Experimente, mit denen ich durch Ausprobieren lerne.",
+    outsideWork: "Abseits der Tastatur reise ich, lerne Sprachen und lese Philosophie und Psychologie, um Menschen, Gesellschaft und die Welt besser zu verstehen. 🌍",
+  },
+  sidebarContent: {
+    openMenuLabel: "Navigation öffnen",
+    closeMenuLabel: "Navigation schließen",
+    menuLabel: "Navigationsmenü",
+    mainNavigationLabel: "Hauptnavigation",
+    openContactFormLabel: "Kontaktformular öffnen",
+    openProfilePrefix: "Profil von",
+    openProfileSuffix: "öffnen",
+    switchToLightThemeLabel: "Zum hellen Design wechseln",
+    switchToDarkThemeLabel: "Zum dunklen Design wechseln",
+    chooseAccentColorLabel: "Akzentfarbe auswählen",
+    chooseColorPaletteLabel: "Farbpalette auswählen",
+    useAccentPrefix: "Akzentfarbe",
+    useAccentSuffix: "verwenden",
+    accentNames: { lavender: "Lavendel", pink: "Rosa", amber: "Bernstein", green: "Grün", blue: "Blau" },
+    introduction: { textBefore: "Ich bin ", textAfter: ", Softwareentwickler und Open-Source-Entwickler. Das ist meine digitale Vorstellung. 🙋🏻" },
+    navigation: [
+      { href: "/work", label: "Berufserfahrung", icon: "briefcase" },
+      { href: "/projects", label: "Open Source", icon: "wrench" },
+      { href: "/skills", label: "Kenntnisse", icon: "lightning" },
+      { href: "/ai", label: "KI", icon: "robot" },
+      { href: "/reading", label: "Bücher", icon: "books" },
+      { href: "/certifications", label: "Zertifikate", icon: "diploma" },
+      { href: "/blog", label: "Blog", icon: "megaphone" },
+      { href: "/about", label: "Über mich", icon: "theater" },
+      { href: "/about-this-site", label: "Über diese Website", icon: "paw" },
+    ],
+    socialLinks: [
+      { label: "GitHub", url: "https://github.com/ayonious" },
+      { label: "LinkedIn", url: "https://www.linkedin.com/in/nahiyan-k-0782743a" },
+      { label: "E-Mail", url: "/about#contact" },
+    ],
+    footerCredit: "Mit ❤️ von Nahiyan erstellt",
+  },
+  aboutContent: {
+    title: "Über mich",
+    paragraphs: [
+      { parts: [{ text: "Ich bin Nahiyan, " }, { text: "Senior Fullstack Software Engineer", href: "/work" }, { text: " in München. 👨‍💻 Ich entwickle skalierbare Web-, Mobile-, Backend-, Zahlungs-, Authentifizierungs- und Reiseprodukte." }] },
+      { parts: [{ text: "Außerdem betreue ich " }, { text: "Open-Source-Werkzeuge", href: "/projects" }, { text: " 🛠️, entwickle " }, { text: "KI-gestützte Entwicklungsabläufe", href: "/ai" }, { text: " 🤖 und verwandle komplexe Systeme gerne in praktische, zuverlässige Software." }] },
+      { parts: [{ text: "Außerhalb der Softwareentwicklung reise ich gern 🌍, lerne Sprachen 🗣️ und lese " }, { text: "Philosophie und Psychologie", href: "/reading" }, { text: " 🧠, um Menschen, Gesellschaft und die Welt besser zu verstehen." }] },
+    ],
+    image: { alt: "Gezeichnetes Porträt von Nahiyan an einem schwarzen Sandstrand" },
+    contactForm: {
+      title: "Schreib mir",
+      introduction: "Du hast eine Idee, Frage oder Gelegenheit, über die wir sprechen sollten? Schreib mir eine Nachricht.",
+      nameLabel: "Name",
+      emailLabel: "E-Mail",
+      messageLabel: "Nachricht",
+      submitLabel: "Nachricht senden",
+      sendingLabel: "Wird gesendet…",
+      successMessage: "Danke — deine Nachricht wurde gesendet.",
+      errorMessage: "Deine Nachricht konnte nicht gesendet werden. Bitte versuche es erneut.",
+      verificationUnavailable: "Die Verifizierung des Kontaktformulars ist noch nicht eingerichtet.",
+    },
+    profilesTitle: "Du findest mich auch auf diesen Plattformen",
+    profiles: [
+      { name: "LinkedIn", emoji: "💼", description: "Meine Berufserfahrung und aktuelle Entwicklungen in meiner Laufbahn.", url: "https://www.linkedin.com/in/nahiyan-k-0782743a" },
+      { name: "GitHub", emoji: "💻", description: "Meine persönlichen Projekte und Open-Source-Beiträge.", url: "https://github.com/ayonious" },
+    ],
+  },
+  pageContent: {
+    work: { title: "Berufserfahrung", introduction: "Meine Laufbahn in der Entwicklung von Web-, Mobile-, Zahlungs-, Authentifizierungs- und Reiseprodukten.", projectsTitle: "Ausgewählte Projekte aus meiner Berufspraxis", projectsIntroduction: "Jedes Projekt wird als kurze Geschichte dargestellt und enthält alle verfügbaren Angaben zur Größenordnung des Dienstes.", scaleTitle: "Dokumentierte Größenordnung" },
+    projects: { title: "Open-Source-Projekte", introduction: "Projekte, die ich persönlich und gemeinsam mit der Console-Table-Printer-Organisation betreue.", openInNpm: "Auf npm öffnen", openLink: "Link öffnen", openOnGitHub: "Auf GitHub öffnen", openProject: "Projekt öffnen", viewOnGitHub: "Auf GitHub ansehen →", projectsLabel: "Projekte", githubStarsLabel: "GitHub-Sterne", technologiesUsedLabel: "Verwendete Technologien" },
+    skills: { title: "Kenntnisse", introduction: "Technologien, Entwicklungsmethoden und Produktbereiche, mit denen ich im Laufe meiner Karriere gearbeitet habe." },
+    ai: { title: "KI", introduction: "Ich nutze KI als Entwicklungswerkzeug und entwickle LLM-gestützte Produkterlebnisse, Automatisierungen, wiederverwendbare Skills und Tool-Integrationen.", workTitle: "Produktive Anwendungen", toolsTitle: "Meine Werkzeuge", capabilitiesTitle: "KI-Kompetenzen" },
+    books: { title: "Bücher", introduction: "Bücher, die mein Denken über Software, Führung, Menschen und die Welt um mich herum prägen.", goodreadsLabel: "Lass uns auf Goodreads vernetzen →", programmingTitle: "Bücher über Softwareentwicklung und Informatik", otherTitle: "Weitere Bücher" },
+    certifications: {
+      title: "Ausbildung, Zertifikate und Kurse",
+      introduction: "Mein Hochschulabschluss, berufliche Qualifikationen und kontinuierliches Lernen.",
+      sections: [
+        { category: "education", title: "Ausbildung", emoji: "🎓", dateLabel: "Abschluss", statusLabel: "Abgeschlossen" },
+        { category: "certification", title: "Zertifikate", emoji: "📜", dateLabel: "Ausgestellt", statusLabel: "Abgeschlossen" },
+        { category: "course", title: "Kurse", emoji: "📚", dateLabel: "Abgeschlossen", statusLabel: "Abgeschlossen" },
+      ],
+      completedLabel: "Abgeschlossen",
+      resultLabel: "Ergebnis",
+    },
+    blog: { title: "Blog", introduction: "Meine Notizen über Softwareentwicklung, Projekte und Themen, die ich gerade lerne.", linkLabel: "Meinen Blog besuchen ↗" },
+  },
+  aboutSiteContent: {
+    title: "Über diese Website",
+    introduction: "Dieses Portfolio basiert auf Open-Source-Software und passt sich an Smartphones, Tablets und Desktop-Bildschirme an. Layout, Navigation und Kontaktformular richten sich nach dem verfügbaren Platz. Vielen Dank an alle, die die verwendeten Pakete betreuen und dazu beitragen.",
+    majorTitle: "Wichtige Technologien",
+    deployment: {
+      title: "Bereitstellung und Kontaktversand",
+      introduction: "Das Portfolio und der zugehörige Kontaktablauf werden gemeinsam auf Vercel bereitgestellt.",
+      details: [
+        { title: "Vercel-Hosting", description: "Vercel erstellt und hostet die Next.js-Anwendung, einschließlich produktiver Bereitstellungen und Vorschauen für Pull Requests." },
+        { title: "Vercel Function", description: "Der Route Handler /api/contact wird zu einer bedarfsgesteuerten Vercel Function. Sie startet beim Absenden des Formulars, prüft die Anfrage und endet nach deren Verarbeitung. Eine Ratenbegrenzung der Vercel Firewall schützt den Endpunkt, bevor zu viele Anfragen die Function erreichen." },
+        { title: "E-Mail-Versand mit Resend", description: "Die serverseitige Function verwendet einen privaten Resend-API-Schlüssel, um Name, E-Mail-Adresse und Nachricht an das konfigurierte Kontaktpostfach zu senden. Die Adresse der absendenden Person wird als Antwortadresse verwendet." },
+        { title: "Cloudflare Turnstile", description: "Cloudflare Turnstile schützt das Kontaktformular vor automatisiertem Spam. Die Prüfung erfolgt normalerweise automatisch und kann die Bestätigung eines Kontrollkästchens verlangen. Vor dem Versand prüft die Website, ob die Verifizierung erfolgreich war." },
+        { title: "Browser-Einstellungen", description: "Die Steuerungen für Design und Akzentfarbe speichern deine Auswahl im localStorage deines Browsers, damit sie beim nächsten Besuch wiederhergestellt werden kann. Diese Einstellungen bleiben auf deinem Gerät und werden nicht für Analysen, Werbung oder Tracking verwendet." },
+      ],
+    },
+    creditsTitle: "Design und Ressourcen",
+    reuse: {
+      title: "Diese Website für dein eigenes Profil verwenden 🧰",
+      introduction: "Du kannst dieses Portfolio als Ausgangspunkt für deine eigene Profilseite verwenden.",
+      notes: ["♻️ Ich übernehme keine Garantie für die Nutzung dieser Website, versuche das Projekt aber so wiederverwendbar wie möglich zu halten.", "⚠️ Die Nutzung des Projekts erfolgt auf eigene Verantwortung.", "📝 Nenne die ursprünglichen Autor:innen, Projekte und Pakete, wenn deren Lizenzen dies verlangen."],
+      repositoryLabel: "Website auf GitHub ansehen und wiederverwenden →",
+    },
+    credits: [
+      { name: "Website von Tania Rascia", role: "Inspiration für das Layout", emoji: "🎨", url: "https://www.taniarascia.com/" },
+      { name: "Icons For Free", role: "Symbole der Benutzeroberfläche", emoji: "✨", url: "https://iconsforfree.com/" },
+      { name: "Simple Icons", role: "Marken- und Technologiesymbole (CC0; Markenrechte gelten weiterhin)", emoji: "🏷️", url: "https://simpleicons.org/" },
+      { name: "Vercel", role: "Bereitstellung", emoji: "🚀", url: "https://vercel.com/" },
+    ],
+  },
+  linkContent: {
+    openWebsite: "Website öffnen",
+    seeInGoodreads: "Auf Goodreads ansehen",
+    destinations: [
+      { hostname: "coursera.org", tooltip: "Auf Coursera ansehen" },
+      { hostname: "udemy.com", tooltip: "Auf Udemy ansehen" },
+      { hostname: "goodreads.com", tooltip: "Auf Goodreads ansehen" },
+    ],
+  },
+  tagContent: { topicsPrefix: "Themen zu", technologies: "Technologien", technologiesUsed: "Verwendete Technologien" },
+  openSourceProjectsConfig: germanProjects,
+  programmingBooks: translated(programmingBooks, [
+    { tags: ["Programmierung", "Sauberer Code", "Softwareentwicklung"] },
+    { tags: ["Programmierung", "Algorithmen", "Informatik"] },
+    { details: "Erstmals 1978 veröffentlicht; die zweite Auflage erschien 1988.", tags: ["Programmierung", "C", "Systemprogrammierung"] },
+    { tags: ["Mathematik", "Informatik", "Algorithmen"] },
+  ]),
+  otherBooks: translated(otherBooks, [
+    { tags: ["Psychologie", "Kommunikation", "Menschliches Verhalten"] },
+  ]),
+  skillGroups: translated(skillGroups, [
+    { title: "Programmiersprachen" },
+    { title: "Frameworks" },
+    { title: "Datenbanken und Daten" },
+    { title: "Cloud und Infrastruktur" },
+    { title: "Mobile Entwicklung", skills: ["React Native", "Swift", "Kotlin"] },
+    { title: "Frontend-Styling", skills: ["CSS", "Tailwind CSS", "Styled Components", "Material UI", "Atomic Design", "Wiederverwendbare Komponentenarchitektur"] },
+    { title: "Tests und Werkzeuge" },
+    { title: "KI", skills: ["Codex", "Claude Code", "Cursor", "ChatGPT", "MCP-Server"] },
+    { title: "Monitoring" },
+    { title: "APIs und Messaging" },
+    { title: "Produktbereiche", skills: ["Zahlungen", "Authentifizierung", "Betrugsprävention", "Reisetechnologie", "E-Commerce"] },
+    { title: "Weitere Kenntnisse", skills: ["WordPress", "Technisches Mentoring", "Technische Interviews"] },
+  ]),
+  aiTools: translated(aiTools, [
+    { use: "Agentische Softwareentwicklung, Änderungen an Repositories, Tests und Entwicklungsabläufe." },
+    { use: "Erkundung von Codebasen, Implementierung, Refactoring und technische Analyse." },
+    { use: "KI-gestütztes Programmieren und schnelle Iterationen direkt im Editor." },
+    { use: "Recherche, strukturiertes Problemlösen, Dokumentation und Ideenfindung." },
+    { use: "KI-Assistenten mit Werkzeugen, Diensten und wiederholbaren Entwicklungsabläufen verbinden." },
+  ]),
+  aiCapabilities: [
+    "KI-gestützte Softwareentwicklung",
+    "Integration von LLMs in Produkte",
+    "Integration von MCP-Servern und Werkzeugen",
+    "Entwicklungsautomatisierung und wiederverwendbare KI-Skills",
+    "Prompt- und Kontextgestaltung",
+    "KI-gestützte Code-Reviews und Refactoring",
+    "Erstellung von Tests und Dokumentation",
+    "KI-gestützte Entwicklung mit Swift und Kotlin",
+  ],
+  aiWork: translated(aiWork, [
+    { title: "LLM-Reiseführer", description: "Das Backend für einen LLM-gestützten Reiseführer entwickelt und generierte Empfehlungen in ein produktives Reiseerlebnis integriert.", scale: "Produktive Funktion für Reisende" },
+    { title: "KI-gestützte Live-Reiseempfehlungen", description: "LLM-gestützte Empfehlungen in Benachrichtigungs- und Fahrplandienste für aktuelle Reiseinformationen integriert.", scale: "Dienste für Millionen Reisende und etwa 10.000 Anfragen pro Sekunde" },
+    { title: "KI-gestützte Entwicklungsautomatisierung", description: "Wiederverwendbare KI-Skills, Entwicklungsautomatisierungen und MCP-Server zur Unterstützung der Softwarebereitstellung und technischer Abläufe entwickelt.", scale: "Im täglichen Entwicklungsalltag eingesetzt" },
+  ]),
+  workHistory: translated(workHistory, [
+    {
+      location: "Berlin, Deutschland", start: "September 2025", end: "Heute",
+      highlights: [
+        "Leitung der Migration von Web-, Mobile- und Backend-Authentifizierung auf eine zentrale Plattform.",
+        "Betreuung von Identity- und Access-Management-Systemen einschließlich OAuth und SSO.",
+        "Betreuung von Zahlungsdiensten und Entwicklung von Live-Update-Diensten für Millionen Reisende.",
+        "Unterstützung gemeinsamer Node.js-Pakete und Mentoring von Teams bei der Integration der Authentifizierungsplattform.",
+        "Entwicklung KI-gestützter Automatisierungen, Skills und MCP-Server sowie Unterstützung bei der technischen Personalauswahl.",
+      ],
+    },
+    {
+      location: "Berlin, Deutschland", start: "November 2016", end: "August 2025",
+      highlights: [
+        "PCI-konforme Finanz- und Zahlungssysteme entwickelt und betreut.",
+        "Kartenzahlungen, PayPal, Apple Pay, Google Pay, iDEAL, Klarna Sofort, Alipay und WeChat Pay über Adyen und Braintree integriert.",
+        "OAuth- und SSO-Anmeldeabläufe für Google, Apple, Facebook und E-Mail-Anmeldung entwickelt.",
+        "Implementierungen für passwortbasierte Anmeldung und passwortlose Zwei-Faktor-Authentifizierung geleitet.",
+        "Funktionen zur Betrugsprävention entwickelt und betreut.",
+      ],
+    },
+    { company: "Europäische Bank", role: "Softwareberater · Auftragnehmer", location: "Amsterdam, Niederlande", start: "August 2016", end: "Oktober 2016", highlights: ["Als Softwareberater für eine der größten Banken Europas gearbeitet. Weitere Einzelheiten unterliegen einer Vertraulichkeitsvereinbarung."] },
+    {
+      location: "Amsterdam, Niederlande", start: "August 2015", end: "Juli 2016",
+      highlights: [
+        "Funktionen zur Anzeige nutzergenerierter Inhalte ergänzt.",
+        "Funktionen entwickelt, die nach einer Buchung zusätzliche Produkte und Extras anbieten.",
+        "Mehr als 30 Experimente zur Messung von Buchungen, Umsatz, Leistung und weiteren Geschäftskennzahlen erstellt.",
+      ],
+    },
+  ]),
+  workProjects: translated(workProjects, [
+    {
+      title: "Zentraler E-Mail-Dienst",
+      situation: "Buchungs-, Zahlungs-, Kundendienst- und Marketing-E-Mails waren auf getrennte Altsysteme verteilt.",
+      task: "Einen gemeinsamen Dienst für geschäftskritische E-Mails schaffen.",
+      action: "Einen zentralen Backend-Dienst entwickelt, mehr als 30 E-Mail-Typen migriert und alten E-Mail-Code aus anderen Projekten entfernt.",
+      result: "Neue E-Mail-Typen lassen sich schneller integrieren; Überwachung und Wartung sind in einem Dienst gebündelt.",
+      scale: ["Etwa 1.000 Anfragen pro Minute", "Mehr als 30 E-Mail-Typen", "Mehrere Produkt- und Supportteams"],
+    },
+    {
+      title: "Migration der Zahlungsseite",
+      situation: "Die Zahlungsseite besaß getrennte native Implementierungen für die mobilen Plattformen.",
+      task: "Das Zahlungserlebnis vereinheitlichen und doppelte plattformspezifische Arbeit reduzieren.",
+      action: "Die Migration der Zahlungsseite von nativen iOS- und Android-Implementierungen zu React Native geleitet und die Frontend- und Backend-Integration koordiniert.",
+      result: "Ein gemeinsames, plattformübergreifendes Zahlungserlebnis mit besser wartbarer Implementierung geschaffen.",
+      scale: ["Etwa 1.000 Anfragen pro Sekunde", "Reisende mit iOS", "Reisende mit Android", "Gemeinsamer mobiler Zahlungsablauf"],
+    },
+    {
+      title: "LLM-Reiseführer",
+      situation: "Reisende benötigten hilfreiche Informationen über ihr Ziel direkt im Buchungserlebnis.",
+      task: "Relevante Reiseempfehlungen als produktive Backend-Funktion bereitstellen.",
+      action: "Das Backend für einen LLM-gestützten Reiseführer entwickelt und generierte Empfehlungen in das Produkt integriert.",
+      result: "Kontextbezogene Reiseempfehlungen im Produkt verfügbar gemacht.",
+      scale: ["Produktive Funktion für Reisende", "Anfragevolumen nicht öffentlich dokumentiert"],
+    },
+    {
+      title: "Live-Updates und Fahrpläne",
+      situation: "Reisende benötigten rechtzeitige Benachrichtigungen und verlässliche Ankunfts- und Abfahrtsinformationen.",
+      task: "Dienste für Live-Reiseinformationen bei hohem Datenverkehr entwickeln.",
+      action: "Microservices für Benachrichtigungen und Fahrpläne entwickelt und LLM-gestützte Empfehlungen in Live-Updates integriert.",
+      result: "Millionen Reisenden aktuelle Reiseinformationen und Empfehlungen bereitgestellt.",
+      scale: ["Etwa 10.000 Anfragen pro Sekunde", "Millionen Nutzer:innen", "Reisebenachrichtigungen und Stationsdaten"],
+    },
+    {
+      title: "Globale Zahlungen und PSP-Integration",
+      situation: "Eine globale Reiseplattform benötigte sichere Zahlungsoptionen für verschiedene Märkte und Geräte.",
+      task: "Die Zahlungsabdeckung erweitern und zugleich PCI-konforme Dienste erhalten.",
+      action: "Integrationen für Karten, PayPal, Apple Pay, Google Pay, iDEAL, Klarna Sofort, Alipay und WeChat Pay über Adyen und Braintree entwickelt.",
+      result: "Reisenden lokal relevante Zahlungsmethoden über eine gemeinsame Zahlungsplattform ermöglicht.",
+      scale: ["Etwa 1.000 Anfragen pro Minute", "Mehr als 8 Zahlungsmethoden", "Reisende weltweit"],
+    },
+    {
+      title: "Plattform für Authentifizierung und Nutzerprofile",
+      situation: "Authentifizierungs- und Profilkomponenten waren über Teams und Plattformen verteilt, was uneinheitliche Sitzungen und hohen Wartungsaufwand verursachte.",
+      task: "Die Authentifizierung für Web-, Mobile- und Backend-Anwendungen zentralisieren.",
+      action: "Dienste und Frontend-Komponenten für OAuth, SSO, Passwörter, passwortlose 2FA und Social Login entwickelt und Teams bei der Migration begleitet.",
+      result: "Unerwartete Abmeldungen reduziert, Sitzungskonsistenz verbessert und Wartung vereinfacht.",
+      scale: ["Etwa 100 Anfragen pro Sekunde", "Web- und Mobile-Nutzer:innen", "Mehrere Produktteams"],
+    },
+    {
+      title: "Zahlungskomponenten für den Checkout",
+      situation: "Zahlungsmethoden und Frontend-Regeln sollten im zentralen Checkout wiederverwendbar sein.",
+      task: "Zahlungsoberfläche und Regeln in konsistent integrierbare Komponenten auslagern.",
+      action: "Zahlungsmethoden-Komponenten in ein gemeinsames Paket überführt und Frontend-Zahlungsregeln implementiert.",
+      result: "Wiederverwendbarkeit und Konsistenz der Zahlungsauswahl verbessert.",
+      scale: ["Etwa 1.000 Anfragen pro Sekunde", "Checkout-Nutzer:innen", "Gemeinsames Frontend-Paket"],
+    },
+  ]),
+  certifications: translated(certifications, [
+    { name: "Bachelor of Science in Informatik und Ingenieurwesen", issued: "Juli 2014" },
+    { issued: "15. Mai 2026", description: "Deutschkenntnisse auf dem GER-Niveau C1." },
+    { name: "NodeJS lernen und verstehen", issued: "November 2018" },
+    { name: "Node mit React: Fullstack-Webentwicklung", issued: "November 2018" },
+    { name: "Einführung in die Psychologie", issued: "Abgeschlossen", description: "Eine Einführung in die Grundlagen der Psychologie und des menschlichen Verhaltens.", tags: ["Psychologie", "Menschliches Verhalten", "Soziale Kompetenzen"] },
+  ]),
+  featuredBlogPosts: translated(featuredBlogPosts, [
+    { title: "Higher-Order Components in React", summary: "Eine beispielbasierte Einführung in das Teilen von Verhalten zwischen React-Komponenten mit dem Higher-Order-Component-Muster." },
+    { title: "Eine geheime Nachricht senden", summary: "Eine praxisnahe Erklärung asymmetrischer Verschlüsselung und des Austauschs vertraulicher Informationen mit öffentlichen und privaten Schlüsseln." },
+    { title: "Das Viewport-Tag in HTML", summary: "Warum responsive Layouts auf Mobilgeräten trotzdem verkleinert wirken können und wie das Viewport-Meta-Tag das Problem löst." },
+    { title: "Throttle und Debounce", summary: "Ein Vergleich zweier Verfahren zur Begrenzung häufiger Browserereignisse wie Scrollen, Größenänderung und Tippen." },
+    { title: "Datentypen in JavaScript bestimmen", summary: "Eine kompakte JavaScript-Referenz zum Erkennen von Strings, Zahlen, Arrays, Objekten und weiteren häufigen Datentypen." },
+    { title: "Das JavaScript-Schlüsselwort var", summary: "Eine Betrachtung von Funktions-Scope, Hoisting und dem überraschenden Verhalten, das alte var-Deklarationen schwer verständlich macht." },
+    { title: "Arrow Functions oder normale Funktionen?", summary: "Ein praxisnaher Vergleich der Syntax und der wichtigen Unterschiede beim Umgang mit this." },
+    { title: "Closures in JavaScript", summary: "Wie innere Funktionen auf ihren äußeren Scope zugreifen und wie Closures für privaten Zustand und wiederverwendbares Verhalten eingesetzt werden." },
+    { title: "Ein CLI-Werkzeug mit TypeScript entwickeln", summary: "Eine schrittweise Beschreibung eines TypeScript-Kommandozeilenwerkzeugs, das JSON-Daten in lesbare Konsolentabellen verwandelt." },
+    { title: "React debuggen", summary: "Ein Leitfaden zur Fehlersuche in React-Anwendungen mit debugger-Anweisungen, Browser-Entwicklerwerkzeugen und Performance-Flamegraphs." },
+  ]),
+  majorDependencies: translated(majorDependencies, [
+    { description: "Das Anwendungsframework stellt App Router, Seitenstruktur, optimierte Bilder, Metadaten, statische Generierung und den Produktionsbuild des Portfolios bereit." },
+    { description: "Das Komponentensystem hinter der Oberfläche. Seitenleiste, Theme-Steuerung, Projektkarten, Leselisten und Inhaltsbereiche bestehen aus wiederverwendbaren React-Komponenten." },
+    { description: "Ergänzt Komponenten und Konfigurationsdaten um statische Typen und hält Projekte, Bücher, Berufserfahrung, Zertifikate und Navigation konsistent." },
+    { description: "Steuert responsives Layout, Abstände, Typografie, helle und dunkle Themes sowie palettenabhängige Gestaltung ohne zusätzliche CSS-in-JS-Laufzeitabhängigkeit." },
+    { description: "Ermöglichen schnelle Komponenten- und Layouttests. Sie prüfen wichtige Metadaten, Navigation, Links und Seitenstruktur aus Sicht der Nutzer:innen." },
+    { description: "Eine Komponentenwerkstatt zum isolierten Erkunden von Buttons, Links, Karten und weiteren wiederverwendbaren Teilen der Website. Die Stories zeigen verschiedene Zustände und ermöglichen den Vergleich heller und dunkler Themes.", action: { ...majorDependencies[5].action!, label: "Storybook-Stories entdecken →" } },
+    { description: "Betreibt die Storybook-Umgebung mit schnellem Start und unmittelbaren Vorschauen bei Änderungen. Next.js erstellt und betreibt das eigentliche Portfolio." },
+    { description: "Stellt browserbasierte End-to-End-Tests für vollständige Navigations- und Interaktionsabläufe bereit, wenn diese Tests aktiviert sind." },
+    { description: "Liefert die einfarbigen Marken- und Technologiesymbole neben Profilen und erkannten Kenntnissen. Die Bibliothek steht unter CC0; Markenrechte und Nutzungsrichtlinien gelten weiterhin." },
+  ]),
+};
+
+// Full German locale content with every field present after applying translations.
+export const germanContent: SiteContent = mergeContent<SiteContent>(englishContent, germanOverrides);

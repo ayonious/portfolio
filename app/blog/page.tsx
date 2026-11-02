@@ -1,9 +1,11 @@
+"use client";
+
+import { useSiteContent } from "../../components/ContentProvider";
 import Button from "../../components/Button";
 import HeadingLink from "../../components/HeadingLink";
-import { pageContent } from "../../config/siteContent";
-import { featuredBlogPosts } from "../../config/blogPosts";
 
 export default function BlogPage() {
+  const { pageContent, featuredBlogPosts } = useSiteContent();
   return (
     <section className="max-w-3xl py-8 sm:py-16">
       <h1 className="text-4xl font-bold tracking-tight text-slate-950 dark:text-slate-50">

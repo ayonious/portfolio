@@ -1,16 +1,19 @@
 "use client";
 
+import { useSiteContent } from "../ContentProvider";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { contactSchema, ContactFormData } from "../../config/contactSchema";
-import { aboutContent } from "../../config/siteContent";
+
 import Button from "../Button";
 import TurnstileWidget from "./TurnstileWidget";
 
 type FormStatus = "idle" | "success" | "error";
 
 export default function ContactForm() {
+  const { aboutContent } = useSiteContent();
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const [status, setStatus] = useState<FormStatus>("idle");
   const [resetSignal, setResetSignal] = useState(0);

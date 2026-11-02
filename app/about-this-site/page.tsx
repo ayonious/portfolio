@@ -1,12 +1,15 @@
+"use client";
+
+import { useSiteContent } from "../../components/ContentProvider";
 import PageHeader from "../../components/PageHeader";
 import HeadingLink from "../../components/HeadingLink";
 import Button from "../../components/Button";
-import { majorDependencies } from "../../config/siteCredits";
-import { aboutSiteContent } from "../../config/siteContent";
+
 import BrandText from "../../components/BrandText";
 import BrandIcon from "../../components/BrandIcon";
 
 export default function AboutThisSitePage() {
+  const { aboutSiteContent, majorDependencies } = useSiteContent();
   return (
     <div className="max-w-4xl py-8 sm:py-16">
       <PageHeader title={aboutSiteContent.title} introduction={aboutSiteContent.introduction} />

@@ -1,4 +1,7 @@
-import { linkContent } from "../../config/siteContent";
+"use client";
+
+import { useSiteContent } from "../ContentProvider";
+
 import HeadingLink from "../HeadingLink";
 import BrandIcon from "../BrandIcon";
 import BrandText from "../BrandText";
@@ -6,6 +9,7 @@ import type { WorkHistoryEntry } from "../../config/workHistory";
 import TechnologyTags from "./TechnologyTags";
 
 export default function WorkHistoryCard({ job }: { job: WorkHistoryEntry }) {
+  const { linkContent } = useSiteContent();
   return (
     <article className="interactive-card rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
       <div className="flex flex-wrap items-start justify-between gap-3">

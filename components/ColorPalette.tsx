@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { accentPalette, type Accent } from "../config/theme";
+import { useSiteContent } from "./ContentProvider";
 
 function isAccent(value: string | null): value is Accent {
   return accentPalette.some((option) => option.value === value);
@@ -13,6 +14,7 @@ function applyAccent(accent: Accent) {
 }
 
 export default function ColorPalette() {
+  const { sidebarContent } = useSiteContent();
   const [accent, setAccent] = useState<Accent>("blue");
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -42,9 +44,9 @@ export default function ColorPalette() {
     <div ref={containerRef} className="group relative">
       <button
         type="button"
-        aria-label="Choose accent color"
+        aria-label={sidebarContent.chooseAccentColorLabel}
         aria-expanded={open}
-        title="Choose accent color"
+        title={sidebarContent.chooseAccentColorLabel}
         onClick={() => setOpen((current) => !current)}
         className="hover-lift peer flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl hover:bg-[var(--accent-soft)]"
       >
@@ -60,7 +62,7 @@ export default function ColorPalette() {
           role="tooltip"
           className="sidebar-tooltip absolute top-12 left-1/2 w-max max-w-44 -translate-x-1/2 group-hover:opacity-100 peer-focus-visible:opacity-100"
         >
-          Choose color palette
+          {sidebarContent.chooseColorPaletteLabel}
         </span>
       )}
 
@@ -70,9 +72,9 @@ export default function ColorPalette() {
             <button
               key={option.value}
               type="button"
-              aria-label={`Use ${option.name} accent`}
+              aria-label={`${sidebarContent.useAccentPrefix} ${sidebarContent.accentNames[option.value]} ${sidebarContent.useAccentSuffix}`}
               aria-pressed={accent === option.value}
-              title={option.name}
+              title={sidebarContent.accentNames[option.value]}
               onClick={() => {
                 setAccent(option.value);
                 applyAccent(option.value);

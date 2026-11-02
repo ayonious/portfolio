@@ -17,7 +17,7 @@ export const skillGroups = [
   },
   {
     title: "Mobile development",
-    skills: ["React Native", "Swift with AI assistance", "Kotlin with AI assistance"],
+    skills: ["React Native", "Swift", "Kotlin"],
   },
   {
     title: "Frontend Styling",

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { MoonIcon, SunIcon } from "./icons/SidebarIcons";
+import { useSiteContent } from "./ContentProvider";
 
 type Theme = "light" | "dark";
 
@@ -11,6 +12,7 @@ function applyTheme(theme: Theme) {
 }
 
 export default function ThemeToggle() {
+  const { sidebarContent } = useSiteContent();
   const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
@@ -33,8 +35,9 @@ export default function ThemeToggle() {
     applyTheme(nextTheme);
   };
 
-  const nextTheme = theme === "light" ? "dark" : "light";
-  const actionLabel = `Switch to ${nextTheme} theme`;
+  const actionLabel = theme === "light"
+    ? sidebarContent.switchToDarkThemeLabel
+    : sidebarContent.switchToLightThemeLabel;
 
   return (
     <div className="group relative">

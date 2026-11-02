@@ -236,3 +236,42 @@ See [Storybook's Next.js/Vite guide](https://storybook.js.org/docs/get-started/f
 and [Vercel's build settings](https://vercel.com/docs/builds/configure-a-build).
 
 </details>
+
+### Languages
+
+The site uses `next-intl` with request-scoped configuration in `i18n/request.ts`.
+Every page has a locale prefix: English uses `/en` and German uses `/de`, for
+example `/en/work` and `/de/work`. Requests without a prefix redirect to the
+equivalent English URL. The language switcher is available in local, QA, and
+production environments and keeps the current page when changing language.
+
+#### Testing languages locally
+
+Start the development server:
+
+```sh
+yarn dev
+```
+
+Open the language dropdown beside the color and theme controls and select
+`English` or `Deutsch`. You can verify the URL behavior with `curl`:
+
+```sh
+curl -s http://127.0.0.1:3000/en/work | rg -o '<html lang="[^"]+"'
+curl -s http://127.0.0.1:3000/de/work | rg -o '<html lang="[^"]+"'
+```
+
+The first response is English and the second is German.
+
+English content remains in the focused `config/` files. Complete German overrides
+live in `config/locales/de.ts`; they cover page copy, controls, accessibility
+labels, work history, project narratives, open-source projects, skills, books,
+certifications, blog summaries, and site credits. Proper names, product names,
+technology names, and original book or article titles stay unchanged where that
+is clearer. Nested objects merge and arrays replace the full list, so English is
+still the safe fallback if a future German field is omitted.
+
+`config/localizedContent.ts` builds the resolved content and next-intl message
+namespaces; `ContentProvider` makes these available to interactive components.
+Metadata and `<html lang>` follow the selected locale. Pages render per request
+so each visitor receives the content matching the URL.

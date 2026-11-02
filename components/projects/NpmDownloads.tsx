@@ -1,8 +1,12 @@
+"use client";
+
+import { useSiteContent } from "../ContentProvider";
 import type { DownloadStat } from "../../config/projects";
-import { pageContent } from "../../config/siteContent";
+
 import MetricBadge from "../MetricBadge";
 
 export default function NpmDownloads({ stat }: { stat: DownloadStat }) {
+  const { pageContent } = useSiteContent();
   return (
     <MetricBadge
       icon={stat.icon}

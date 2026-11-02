@@ -1,15 +1,19 @@
+"use client";
+
+import { useSiteContent } from "../ContentProvider";
 import HeadingLink from "../HeadingLink";
 import Button from "../Button";
 import TagList from "../TagList";
-import { tagContent } from "../../config/siteContent";
+
 import ProjectStars from "./ProjectStars";
 import NpmDownloads from "./NpmDownloads";
 import type { OpenSourceProject } from "../../config/projects";
 import { getProjectTechnologies } from "./projectUtils";
 
 export default function ProjectCard({ project }: { project: OpenSourceProject }) {
+  const { pageContent, tagContent } = useSiteContent();
   const technologies = getProjectTechnologies(project);
-  const linkLabel = project.url.includes("github.com") ? "Open in GitHub" : "Open project";
+  const linkLabel = project.url.includes("github.com") ? pageContent.projects.openOnGitHub : pageContent.projects.openProject;
 
   return (
     <article className="interactive-card rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">

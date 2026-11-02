@@ -1,6 +1,10 @@
-import { homeContent } from "../../config/siteContent";
+"use client";
+
+import BrandText from "../BrandText";
+import { useSiteContent } from "../ContentProvider";
 
 export default function Introduction() {
+  const { homeContent } = useSiteContent();
   return (
     <section className="max-w-2xl py-8 sm:py-16">
       <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-[var(--accent)]">
@@ -10,16 +14,16 @@ export default function Introduction() {
         {homeContent.title}
       </h1>
       <p className="mt-6 text-xl leading-8 text-slate-700 dark:text-slate-200">
-        {homeContent.introduction}
+        <BrandText text={homeContent.introduction} />
       </p>
       <p className="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
-        {homeContent.currentWork}
+        <BrandText text={homeContent.currentWork} />
       </p>
       <p className="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
-        {homeContent.openSource}
+        <BrandText text={homeContent.openSource} />
       </p>
       <p className="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
-        {homeContent.outsideWork}
+        <BrandText text={homeContent.outsideWork} />
       </p>
     </section>
   );

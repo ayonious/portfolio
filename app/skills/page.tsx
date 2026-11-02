@@ -1,9 +1,12 @@
+"use client";
+
+import { useSiteContent } from "../../components/ContentProvider";
 import PageHeader from "../../components/PageHeader";
-import { skillGroups } from "../../config/skills";
-import { pageContent } from "../../config/siteContent";
+
 import SkillGroup from "../../components/skills/SkillGroup";
 
 export default function SkillsPage() {
+  const { pageContent, skillGroups } = useSiteContent();
   return (
     <div className="max-w-4xl py-8 sm:py-16">
       <PageHeader title={pageContent.skills.title} introduction={pageContent.skills.introduction} />

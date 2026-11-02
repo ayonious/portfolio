@@ -1,5 +1,8 @@
 "use client";
 
+import { useSite, useSiteContent } from "./ContentProvider";
+
+import LanguageSwitcher from "./LanguageSwitcher";
 import InlineLink from "./InlineLink";
 
 import Link from "next/link";
@@ -8,10 +11,8 @@ import { useEffect, useRef, useState } from "react";
 import ColorPalette from "./ColorPalette";
 import ThemeToggle from "./ThemeToggle";
 import BrandIcon from "./BrandIcon";
-import {
-  sidebarContent,
-  type NavigationIcon,
-} from "../config/siteContent";
+import { type NavigationIcon } from "../config/siteContent";
+import { localizedPath } from "../config/internationalization";
 import {
   BooksIcon,
   BriefcaseIcon,
@@ -41,6 +42,8 @@ const navigationIcons: Record<NavigationIcon, typeof BriefcaseIcon> = {
 };
 
 export default function ProfileSidebar() {
+  const { sidebarContent } = useSiteContent();
+  const { locale } = useSite();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -77,11 +80,12 @@ export default function ProfileSidebar() {
   return (
     <>
     <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-4 py-2 dark:border-slate-700 sm:px-8 lg:hidden">
-      <Link href="/" className="flex items-center gap-2 text-xl font-bold text-slate-950 no-underline dark:text-slate-50">
+      <Link href={localizedPath("/", locale)} className="flex items-center gap-2 text-xl font-bold text-slate-950 no-underline dark:text-slate-50">
         <SailboatIcon className="shrink-0" />
         <span>{sidebarContent.name}</span>
       </Link>
       <div className="ml-auto flex shrink-0 items-center">
+      <LanguageSwitcher />
       <ColorPalette />
       <ThemeToggle />
       <button
@@ -130,12 +134,13 @@ export default function ProfileSidebar() {
           <div className="-mx-4 flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-4 py-2 dark:border-slate-700 sm:-mx-8 sm:px-8 lg:mx-0 lg:gap-3 lg:px-0 lg:pt-0 lg:pb-5">
             <Link
               className="flex items-center gap-2 text-xl font-bold text-slate-950 no-underline dark:text-slate-50 lg:text-2xl"
-              href="/"
+              href={localizedPath("/", locale)}
             >
               <SailboatIcon className="shrink-0" />
               <span>{sidebarContent.name}</span>
             </Link>
             <div className="ml-auto flex shrink-0 items-center lg:ml-0">
+              <LanguageSwitcher />
               <ColorPalette />
               <ThemeToggle />
               <button ref={closeButtonRef} type="button" onClick={closeMenu} aria-label={sidebarContent.closeMenuLabel} className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl text-[var(--accent)] hover:bg-[var(--accent-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] lg:hidden">
@@ -146,7 +151,7 @@ export default function ProfileSidebar() {
           <p className="mt-5 border-b border-slate-200 pb-5 text-slate-600 dark:border-slate-700 dark:text-slate-300 lg:max-w-xs">
             {sidebarContent.introduction.textBefore}
             <InlineLink
-              href="/about"
+                href={localizedPath("/about", locale)}
             >
               {sidebarContent.introduction.linkText}
             </InlineLink>
@@ -155,7 +160,7 @@ export default function ProfileSidebar() {
         </div>
 
         <nav
-          aria-label="Main navigation"
+          aria-label={sidebarContent.mainNavigationLabel}
           className="mx-auto mt-5 flex w-max max-w-full flex-col gap-2 lg:mx-0 lg:mt-8 lg:w-full lg:max-w-none"
         >
           {sidebarContent.navigation.map(({ href, label, icon }) => {
@@ -176,7 +181,7 @@ export default function ProfileSidebar() {
             return (
               <Link
                 key={href}
-                href={href}
+                href={localizedPath(href, locale)}
                 className={className}
                 aria-current={isActive ? "page" : undefined}
               >
@@ -191,14 +196,14 @@ export default function ProfileSidebar() {
             {sidebarContent.socialLinks.map((link) => (
               <a
                 key={link.url}
-                href={link.url}
+                href={localizedPath(link.url, locale)}
                 target={link.url.startsWith("http") ? "_blank" : undefined}
                 rel={link.url.startsWith("http") ? "noreferrer" : undefined}
-                aria-label={link.label === "Mail" ? "Open contact form" : `Open ${link.label} profile`}
-                title={link.label === "Mail" ? "Open contact form" : `Open ${link.label} profile`}
+                aria-label={link.url.startsWith("/about#contact") ? sidebarContent.openContactFormLabel : `${sidebarContent.openProfilePrefix} ${link.label} ${sidebarContent.openProfileSuffix}`}
+                title={link.url.startsWith("/about#contact") ? sidebarContent.openContactFormLabel : `${sidebarContent.openProfilePrefix} ${link.label} ${sidebarContent.openProfileSuffix}`}
                 className="group relative flex h-10 w-10 items-center justify-center rounded-xl no-underline transition-[background-color,translate,scale] duration-200 ease-out hover:bg-[var(--accent-soft)] motion-safe:hover:-translate-y-1 motion-safe:hover:scale-110 motion-safe:focus-visible:-translate-y-1 motion-safe:focus-visible:scale-110 motion-reduce:transition-none"
               >
-                {link.label === "Mail" ? (
+                {link.url.startsWith("/about#contact") ? (
                   <MailIcon className="h-5 w-5 text-[var(--accent)]" />
                 ) : (
                   <BrandIcon name={link.label} className="h-5 w-5" />
