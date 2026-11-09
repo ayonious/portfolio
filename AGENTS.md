@@ -4,7 +4,7 @@
 
 - Keep user-editable text, URLs, labels, lists, profile details, and structured page data in `config/`.
 - Keep page-specific data in focused files such as `books.ts`, `projects.ts`, `workHistory.ts`, and `certifications.ts`.
-- Put shared page titles, introductions, navigation labels, metadata, and profile links in `config/siteContent.ts`.
+- Put shared page titles, introductions, navigation labels, metadata, and profile links in `config/locales/en.ts` (one file per language; `config/locales/index.ts` picks the default, `config/siteContent.ts` re-exports it).
 - Put theme options and other visual configuration values in dedicated config files such as `config/theme.ts`.
 - React files under `app/` and `components/` should primarily render configured content and handle interaction. Avoid introducing substantial hardcoded copy there.
 
