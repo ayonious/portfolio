@@ -23,6 +23,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
+          # Jobs from ci.yml, cypress.yml and codecov.yml that run the test suites.
+          REQUIRED_CHECKS: build-and-test cypress coverage
         run: |
           set -uo pipefail
 
@@ -45,9 +47,24 @@ jobs:
               continue
             fi
 
-            # gh pr checks exits 0 only when every check has passed.
+            # The test jobs must each have run and succeeded on this PR.
+            checks=$(gh pr view "$number" --json statusCheckRollup --jq '.statusCheckRollup')
+            missing=""
+            for job in $REQUIRED_CHECKS; do
+              if ! jq -e --arg job "$job" \
+                'any(.[]; .name == $job and .conclusion == "SUCCESS")' <<< "$checks" > /dev/null; then
+                missing="$missing $job"
+              fi
+            done
+            if [ -n "$missing" ]; then
+              echo "Tests not passing yet:$missing; skipping."
+              echo "::endgroup::"
+              continue
+            fi
+
+            # Every other check (Vercel, Codecov, ...) must also be green, not pending or failing.
             if ! gh pr checks "$number" > /dev/null; then
-              echo "Checks are failing or still pending; skipping."
+              echo "Another check is failing or still pending; skipping."
               echo "::endgroup::"
               continue
             fi
