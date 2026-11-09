@@ -1,0 +1,61 @@
+name: Weekly Dependabot Merge
+
+on:
+  schedule:
+    # Every Monday at 06:00 UTC, after Dependabot's weekly PRs have had time to run CI.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: dependabot-weekly-merge
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Merge green Dependabot PRs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -uo pipefail
+
+          prs=$(gh pr list --author 'app/dependabot' --base master --state open \
+            --json number,title --jq '.[] | "\(.number)\t\(.title)"')
+
+          if [ -z "$prs" ]; then
+            echo "No open Dependabot PRs."
+            exit 0
+          fi
+
+          while IFS=$'\t' read -r number title; do
+            echo "::group::#$number $title"
+
+            # Skip semver-major bumps ("from 6.0.0 to 7.0.1"); review those by hand.
+            if [[ "$title" =~ from\ v?([0-9]+)[^\ ]*\ to\ v?([0-9]+) ]] \
+              && [ "${BASH_REMATCH[1]}" != "${BASH_REMATCH[2]}" ]; then
+              echo "Skipping major version bump."
+              echo "::endgroup::"
+              continue
+            fi
+
+            # gh pr checks exits 0 only when every check has passed.
+            if ! gh pr checks "$number" > /dev/null; then
+              echo "Checks are failing or still pending; skipping."
+              echo "::endgroup::"
+              continue
+            fi
+
+            if gh pr merge "$number" --squash --delete-branch; then
+              echo "Merged."
+            else
+              echo "::warning::Could not merge #$number (conflict, or it changes workflow files)."
+            fi
+            echo "::endgroup::"
+          done <<< "$prs"
