@@ -147,7 +147,7 @@ for unrestricted production sending.
 
 Editable text, links, navigation labels, theme options, and structured profile
 data live in `config/`. Shared copy and metadata are in
-`config/siteContent.ts`; focused content such as books, projects, skills,
+`config/siteContent.ts` (the text itself lives per language in `config/locales/`); focused content such as books, projects, skills,
 certifications, and work history stays in its corresponding config file.
 
 Files in `app/` and `components/` focus on layout, rendering, and interaction.
