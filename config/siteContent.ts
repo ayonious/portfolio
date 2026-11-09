@@ -186,7 +186,7 @@ export const pageContent = {
     introduction:
       "Read my notes about software engineering, projects, and things I am learning.",
     linkLabel: "Visit my blog ↗",
-    url: "https://that-it-guy.netlify.app",
+    url: "https://ayonious.github.io/that-it-guy-tech-blog",
   },
 };
 

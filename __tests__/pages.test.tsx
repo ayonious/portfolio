@@ -63,7 +63,7 @@ describe("site pages", () => {
     expect(screen.getByText(/Notes about software engineering/i)).toBeTruthy();
     const blogLink = screen.getByRole("link", { name: "Visit my blog ↗" });
     expect(blogLink.className).toContain("action-button");
-    expect(blogLink.getAttribute("href")).toBe("https://that-it-guy.netlify.app");
+    expect(blogLink.getAttribute("href")).toBe("https://ayonious.github.io/that-it-guy-tech-blog");
     expect(blogLink.getAttribute("target")).toBe("_blank");
     expect(blogLink.getAttribute("rel")).toBe("noreferrer");
   });

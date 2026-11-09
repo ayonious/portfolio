@@ -4,7 +4,7 @@ export type BlogPost = {
   url: string;
 };
 
-const blogBaseUrl = "https://that-it-guy.netlify.app/blogs";
+const blogBaseUrl = "https://ayonious.github.io/that-it-guy-tech-blog/blogs";
 
 export const featuredBlogPosts: BlogPost[] = [
   {
