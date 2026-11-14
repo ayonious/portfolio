@@ -1,14 +1,14 @@
 export const siteMetadata = {
-  title: "Nahiyan Kamal — Software Engineer",
+  title: "Nahiyan Kamal — Senior Fullstack and AI Engineer",
   description:
-    "Personal portfolio of Nahiyan Kamal, a Senior Fullstack Software Engineer based in Munich.",
+    "Personal portfolio of Nahiyan Kamal, a Senior Fullstack and AI Engineer based in Munich.",
 };
 
 export const homeContent = {
   location: "Munich, Germany",
   title: "Hey, I'm Nahiyan!",
   introduction:
-    "I'm a Senior Fullstack Software Engineer who builds reliable web and mobile products with TypeScript, React, React Native, and Node.js.",
+    "I'm a Senior Fullstack and AI Engineer who builds reliable web and mobile products with TypeScript, React, React Native, and Node.js.",
   currentWork:
     "I currently work at Omio, focusing on authentication, payments, and services used by travelers around the world.",
   openSource:
@@ -67,7 +67,7 @@ export const aboutContent = {
     {
       parts: [
         { text: "I'm Nahiyan, a " },
-        { text: "Senior Fullstack Software Engineer", href: "/work" },
+        { text: "Senior Fullstack and AI Engineer", href: "/work" },
         {
           text: " based in Munich. 👨‍💻 I build web, mobile, backend, payment, authentication, and travel products used at scale.",
         },

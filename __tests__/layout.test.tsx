@@ -5,9 +5,9 @@ import RootLayout, { metadata } from "../app/layout";
 describe("root layout", () => {
   it("sets the site metadata", () => {
     expect(metadata).toMatchObject({
-      title: "Nahiyan Kamal — Software Engineer",
+      title: "Nahiyan Kamal — Senior Fullstack and AI Engineer",
       description:
-        "Personal portfolio of Nahiyan Kamal, a Senior Fullstack Software Engineer based in Munich.",
+        "Personal portfolio of Nahiyan Kamal, a Senior Fullstack and AI Engineer based in Munich.",
     });
   });
 
