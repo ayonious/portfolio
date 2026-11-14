@@ -18,7 +18,7 @@ describe("site pages", () => {
     expect(
       screen.getByRole("heading", { name: "Hey, I'm Nahiyan!" }),
     ).toBeTruthy();
-    expect(screen.getByText(/Senior Fullstack Software Engineer/i)).toBeTruthy();
+    expect(screen.getByText(/Senior Fullstack and AI Engineer/i)).toBeTruthy();
     expect(screen.getByText(/I currently work at Omio/i)).toBeTruthy();
     expect(screen.getByText(/open-source tools and playful experiments/i)).toBeTruthy();
     expect(screen.getByText(/travel, learn languages, and read philosophy/i)).toBeTruthy();
@@ -28,7 +28,7 @@ describe("site pages", () => {
     render(<AboutPage />);
 
     expect(screen.getByRole("heading", { name: "About me" })).toBeTruthy();
-    expect(screen.getByText(/Senior Fullstack Software Engineer/i)).toBeTruthy();
+    expect(screen.getByText(/Senior Fullstack and AI Engineer/i)).toBeTruthy();
     expect(screen.getByRole("heading", { name: "Send me a message" })).toBeTruthy();
     expect(screen.getByLabelText("Name")).toBeTruthy();
     expect(screen.getByLabelText("Email")).toBeTruthy();
