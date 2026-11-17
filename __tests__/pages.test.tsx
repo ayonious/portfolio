@@ -10,6 +10,7 @@ import ProjectsPage from "../app/projects/page";
 import ReadingPage from "../app/reading/page";
 import SkillsPage from "../app/skills/page";
 import WorkHistoryPage from "../app/work/page";
+import PrivacyPage from "../app/privacy/page";
 
 describe("site pages", () => {
   it("introduces Nahiyan and his work", () => {
@@ -22,6 +23,15 @@ describe("site pages", () => {
     expect(screen.getByText(/I currently work at Omio/i)).toBeTruthy();
     expect(screen.getByText(/open-source tools and playful experiments/i)).toBeTruthy();
     expect(screen.getByText(/travel, learn languages, and read philosophy/i)).toBeTruthy();
+    expect(screen.getByRole("link", { name: "Privacy policy" }).getAttribute("href")).toBe("/privacy");
+  });
+
+  it("explains what data the site processes", () => {
+    render(<PrivacyPage />);
+
+    expect(screen.getByRole("heading", { name: "Privacy policy" })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: /Contact form and Resend/ })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: /Your rights/ })).toBeTruthy();
   });
 
   it("describes the project on the about page", () => {

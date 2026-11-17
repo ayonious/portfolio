@@ -15,6 +15,46 @@ export const homeContent = {
     "I also build open-source tools and playful experiments that help me learn by making.",
   outsideWork:
     "Away from the keyboard, I travel, learn languages, and read philosophy and psychology to better understand people, society, and the world. 🌍",
+  privacyLink: { href: "/privacy", label: "Privacy policy" },
+};
+
+export const privacyContent = {
+  title: "Privacy policy",
+  introduction:
+    "This site does not use tracking cookies, analytics, or ads. This page explains what data is processed when you visit it or use the contact form.",
+  lastUpdated: "Last updated: November 17, 2026",
+  sections: [
+    {
+      title: "Who is responsible",
+      description:
+        "Nahiyan Kamal, Munich, Germany, is responsible for this website. You can reach me through the contact form on the About me page.",
+    },
+    {
+      title: "Hosting by Vercel",
+      description:
+        "Vercel Inc. hosts this site. When you open a page, your browser sends technical data such as your IP address, browser type, and the requested page. Vercel processes this data to deliver the site and keep it secure (legitimate interest, Art. 6(1)(f) GDPR). Vercel is based in the USA and participates in the EU-US Data Privacy Framework.",
+    },
+    {
+      title: "Contact form and Resend",
+      description:
+        "If you send a message, your name, email address, and message are delivered to my inbox by Resend, an email service based in the USA. I use them only to reply to you (Art. 6(1)(b) and (f) GDPR) and delete them when the conversation is finished, unless I must keep them by law.",
+    },
+    {
+      title: "Spam protection by Cloudflare Turnstile",
+      description:
+        "The contact form uses Cloudflare Turnstile to block automated spam. When the form loads, Cloudflare processes your IP address and browser signals to check that you are human (legitimate interest, Art. 6(1)(f) GDPR). Cloudflare is based in the USA and participates in the EU-US Data Privacy Framework.",
+    },
+    {
+      title: "Theme settings in your browser",
+      description:
+        "Your chosen theme and accent color are saved in your browser's local storage so the site remembers them. This data never leaves your device and you can clear it in your browser settings.",
+    },
+    {
+      title: "Your rights",
+      description:
+        "You have the right to access, correct, delete, or restrict the processing of your personal data, to object to processing, and to data portability. You can also complain to a data protection authority, such as the Bavarian Data Protection Authority (BayLDA).",
+    },
+  ],
 };
 
 export type NavigationIcon =

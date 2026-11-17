@@ -6,6 +6,7 @@ export type { NavigationIcon } from "./locales/en";
 export const {
   siteMetadata,
   homeContent,
+  privacyContent,
   sidebarContent,
   aboutContent,
   pageContent,
