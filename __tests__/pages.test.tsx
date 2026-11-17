@@ -11,6 +11,7 @@ import ReadingPage from "../app/reading/page";
 import SkillsPage from "../app/skills/page";
 import WorkHistoryPage from "../app/work/page";
 import PrivacyPage from "../app/privacy/page";
+import { privacyContent } from "../config/siteContent";
 
 describe("site pages", () => {
   it("introduces Nahiyan and his work", () => {
@@ -32,6 +33,15 @@ describe("site pages", () => {
     expect(screen.getByRole("heading", { name: "Privacy policy" })).toBeTruthy();
     expect(screen.getByRole("heading", { name: /Contact form and Resend/ })).toBeTruthy();
     expect(screen.getByRole("heading", { name: /Your rights/ })).toBeTruthy();
+  });
+
+  it("lists every privacy section, including the right to complain", () => {
+    render(<PrivacyPage />);
+
+    expect(screen.getAllByRole("heading", { level: 2 })).toHaveLength(privacyContent.sections.length);
+    expect(screen.getByText(/complain to a data protection authority\./)).toBeTruthy();
+    expect(screen.getByText(privacyContent.lastUpdated)).toBeTruthy();
+    expect(screen.queryByText(/BayLDA/)).toBeNull();
   });
 
   it("describes the project on the about page", () => {

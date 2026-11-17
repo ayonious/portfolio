@@ -39,4 +39,13 @@ describe("sidebar menu", () => {
     fireEvent.click(screen.getByRole("link", { name: "Work" }));
     expect(button).toHaveAttribute("aria-expanded", "false");
   });
+
+  it("links the privacy policy below the footer credit", () => {
+    render(<ProfileSidebar />);
+    const credit = screen.getByText("Made with ❤️ by Nahiyan");
+    const link = screen.getByRole("link", { name: "Privacy policy" });
+
+    expect(link).toHaveAttribute("href", "/privacy");
+    expect(credit.compareDocumentPosition(link) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
 });
