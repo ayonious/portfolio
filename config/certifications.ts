@@ -42,7 +42,7 @@ export const certifications: Certification[] = [
   {
     category: "course",
     name: "Introduction to Psychology",
-    tags: ["Psychology", "HumanBehavior", "SoftSkills"],
+    tags: ["Psychology", "HumanBehavior", "SoftSkills", "Leadership"],
     url: "https://www.coursera.org/learn/introduction-psychology",
     issuer: "Coursera",
     issued: "Completed",
