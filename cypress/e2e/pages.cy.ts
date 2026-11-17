@@ -72,7 +72,7 @@ for (const viewport of [
 
     it("shows the current homepage introduction", () => {
       cy.contains("h1", "Hey, I'm Nahiyan!").should("be.visible");
-      cy.contains("Senior Fullstack Software Engineer").should("be.visible");
+      cy.contains("Senior Fullstack and AI Engineer").should("be.visible");
       cy.contains("Munich, Germany").should("be.visible");
     });
 
