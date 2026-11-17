@@ -1,4 +1,3 @@
-import InlineLink from "../InlineLink";
 import { homeContent } from "../../config/siteContent";
 
 export default function Introduction() {
@@ -21,9 +20,6 @@ export default function Introduction() {
       </p>
       <p className="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
         {homeContent.outsideWork}
-      </p>
-      <p className="mt-10 text-sm text-slate-500 dark:text-slate-400">
-        <InlineLink href={homeContent.privacyLink.href}>{homeContent.privacyLink.label}</InlineLink>
       </p>
     </section>
   );

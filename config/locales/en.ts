@@ -15,7 +15,6 @@ export const homeContent = {
     "I also build open-source tools and playful experiments that help me learn by making.",
   outsideWork:
     "Away from the keyboard, I travel, learn languages, and read philosophy and psychology to better understand people, society, and the world. 🌍",
-  privacyLink: { href: "/privacy", label: "Privacy policy" },
 };
 
 export const privacyContent = {

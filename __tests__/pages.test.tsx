@@ -24,7 +24,6 @@ describe("site pages", () => {
     expect(screen.getByText(/I currently work at Omio/i)).toBeTruthy();
     expect(screen.getByText(/open-source tools and playful experiments/i)).toBeTruthy();
     expect(screen.getByText(/travel, learn languages, and read philosophy/i)).toBeTruthy();
-    expect(screen.getByRole("link", { name: "Privacy policy" }).getAttribute("href")).toBe("/privacy");
   });
 
   it("explains what data the site processes", () => {
