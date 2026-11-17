@@ -52,7 +52,7 @@ export const privacyContent = {
     {
       title: "Your rights",
       description:
-        "You have the right to access, correct, delete, or restrict the processing of your personal data, to object to processing, and to data portability. You can also complain to a data protection authority, such as the Bavarian Data Protection Authority (BayLDA).",
+        "You have the right to access, correct, delete, or restrict the processing of your personal data, to object to processing, and to data portability. You can also complain to a data protection authority.",
     },
   ],
 };
@@ -99,6 +99,7 @@ export const sidebarContent = {
     { label: "Mail", url: "/about#contact" },
   ],
   footerCredit: "Made with ❤️ by Nahiyan",
+  footerLinks: [{ href: "/privacy", label: "Privacy policy" }],
 };
 
 export const aboutContent = {

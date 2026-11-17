@@ -215,6 +215,11 @@ export default function ProfileSidebar() {
           <p className="mt-3 text-[length:var(--sidebar-label-font-size)] text-slate-500 dark:text-slate-400">
             {sidebarContent.footerCredit}
           </p>
+          <p className="mt-1 flex gap-3 text-[length:var(--sidebar-label-font-size)] text-slate-500 dark:text-slate-400">
+            {sidebarContent.footerLinks.map((link) => (
+              <InlineLink key={link.href} href={link.href}>{link.label}</InlineLink>
+            ))}
+          </p>
         </div>
       </div>
     </aside>
