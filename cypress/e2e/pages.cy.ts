@@ -104,6 +104,14 @@ for (const viewport of [
       cy.contains("h1", "About me").should("be.visible");
     });
 
+    it("opens the privacy policy from the sidebar footer", () => {
+      openNavigation();
+      cy.get("#profile-sidebar").contains("a", "Privacy policy").should("be.visible").click();
+      cy.location("pathname").should("equal", "/privacy");
+      cy.contains("h1", "Privacy policy").should("be.visible");
+      cy.contains("h2", "Your rights").should("be.visible");
+    });
+
     it("changes the theme and accent palette", () => {
       cy.get('button[aria-label^="Switch to"]').filter(":visible").click();
       cy.window().its("localStorage.theme").should("match", /^(light|dark)$/);
