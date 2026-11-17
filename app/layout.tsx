@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import ProfileSidebar from "../components/ProfileSidebar";
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             {children}
           </main>
         </div>
+        <SpeedInsights />
       </body>
     </html>
   );
