@@ -26,7 +26,8 @@ export const privacyContent = {
     {
       title: "Who is responsible",
       description:
-        "Nahiyan Kamal, Munich, Germany, is responsible for this website. You can reach me through the contact form on the About me page.",
+        "Nahiyan Kamal, Munich, Germany, is responsible for this website. You can contact me through this",
+      link: { href: "/about#contact", label: "form", suffix: "." },
     },
     {
       title: "Hosting by Vercel",

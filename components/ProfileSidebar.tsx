@@ -156,7 +156,7 @@ export default function ProfileSidebar() {
 
         <nav
           aria-label="Main navigation"
-          className="mx-auto mt-5 flex w-max max-w-full flex-col gap-2 lg:mx-0 lg:mt-8 lg:w-full lg:max-w-none"
+          className="mx-auto mt-5 flex w-max max-w-full flex-col gap-2 lg:mx-0 lg:mt-6 lg:w-full lg:max-w-none lg:gap-1 lg:pb-6"
         >
           {sidebarContent.navigation.map(({ href, label, icon }) => {
             const Icon = navigationIcons[icon];
@@ -167,7 +167,7 @@ export default function ProfileSidebar() {
                 <span>{label}</span>
               </>
             );
-            const className = `flex min-h-11 min-w-0 items-center gap-2 rounded-xl border px-3 py-2 text-sm font-semibold no-underline transition-[color,background-color,translate] duration-200 ease-out sm:text-base lg:gap-3 lg:motion-safe:hover:translate-x-1 lg:motion-safe:focus-visible:translate-x-1 motion-reduce:transition-none ${
+            const className = `flex min-h-11 min-w-0 items-center gap-2 rounded-xl border px-3 py-2 text-sm font-semibold no-underline transition-[color,background-color,translate] duration-200 ease-out sm:text-base lg:min-h-10 lg:gap-3 lg:py-1.5 lg:motion-safe:hover:translate-x-1 lg:motion-safe:focus-visible:translate-x-1 motion-reduce:transition-none ${
               isActive
                 ? "lg:motion-safe:translate-x-1 border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]"
                 : "border-transparent text-slate-700 hover:bg-[var(--accent-soft)] hover:text-slate-950 dark:text-slate-200 dark:hover:text-white"
