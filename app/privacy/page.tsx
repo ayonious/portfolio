@@ -1,3 +1,4 @@
+import InlineLink from "../../components/InlineLink";
 import PageHeader from "../../components/PageHeader";
 import BrandText from "../../components/BrandText";
 import { privacyContent } from "../../config/siteContent";
@@ -19,6 +20,14 @@ export default function PrivacyPage() {
             </h2>
             <p className="text-slate-600 dark:text-slate-300">
               <BrandText text={section.description} />
+              {section.link && (
+                <>
+                  {" "}
+                  <InlineLink href={section.link.href} className="underline underline-offset-4">
+                    {section.link.label}
+                  </InlineLink>
+                </>
+              )}
             </p>
           </li>
         ))}
