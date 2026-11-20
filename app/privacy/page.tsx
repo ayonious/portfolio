@@ -26,6 +26,7 @@ export default function PrivacyPage() {
                   <InlineLink href={section.link.href} className="underline underline-offset-4">
                     {section.link.label}
                   </InlineLink>
+                  {section.link.suffix}
                 </>
               )}
             </p>
