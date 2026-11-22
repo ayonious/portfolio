@@ -219,6 +219,7 @@ export const pageContent = {
       { category: "education", title: "Education", emoji: "🎓", dateLabel: "Graduated", statusLabel: "Graduated" },
       { category: "certification", title: "Certifications", emoji: "📜", dateLabel: "Issued", statusLabel: "Completed" },
       { category: "course", title: "Courses", emoji: "📚", dateLabel: "Completed", statusLabel: "Completed" },
+      { category: "award", title: "Awards", emoji: "🏆", dateLabel: "Awarded", statusLabel: "Awarded" },
     ],
     completedLabel: "Completed",
   },

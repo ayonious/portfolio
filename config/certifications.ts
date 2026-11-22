@@ -1,5 +1,5 @@
 export type Certification = {
-  category: "education" | "certification" | "course";
+  category: "education" | "certification" | "award" | "course";
   name: string;
   issuer: string;
   issued: string;
@@ -22,6 +22,47 @@ export const certifications: Certification[] = [
     issuer: "telc",
     issued: "15 May 2026",
     description: "German language proficiency at CEFR level C1.",
+  },
+  {
+    category: "course",
+    name: "Fundamentals of Agents",
+    issuer: "Hugging Face",
+    issued: "22 November 2026",
+    url: "https://huggingface.co/learn/agents-course",
+    description: "Completed Unit 1: Foundations of Agents in the Hugging Face Agents Course.",
+    tags: ["AI", "Agents", "LLM"],
+  },
+  {
+    category: "award",
+    name: "ACM-ICPC Asia Regional Dhaka Site 2011",
+    issuer: "ACM International Collegiate Programming Contest",
+    issued: "19 November 2011",
+    result: "3rd Place",
+    description: "Competed for Bangladesh University of Engineering and Technology (BUET).",
+  },
+  {
+    category: "award",
+    name: "ACM-ICPC Asia Regional Dhaka Site 2010",
+    issuer: "ACM International Collegiate Programming Contest",
+    issued: "6 November 2010",
+    result: "7th Place",
+    description: "Competed for Bangladesh University of Engineering and Technology (BUET).",
+  },
+  {
+    category: "award",
+    name: "ACM-ICPC Asia Regional Dhaka Site 2009",
+    issuer: "ACM International Collegiate Programming Contest",
+    issued: "24 October 2009",
+    result: "3rd Place",
+    description: "Competed with team BUET Integrity for Bangladesh University of Engineering and Technology (BUET).",
+  },
+  {
+    category: "award",
+    name: "Divisional Mathematical Olympiad 2008, Dhaka",
+    issuer: "Bangladesh Mathematical Olympiad Committee",
+    issued: "2 February 2008",
+    result: "Champion, Higher Secondary category",
+    description: "Represented Adamjee Cantonment College.",
   },
   {
     category: "course",
