@@ -201,6 +201,7 @@ export const pageContent = {
     workTitle: "Production work",
     toolsTitle: "Tools I use",
     capabilitiesTitle: "AI capabilities",
+    learningTitle: "Courses and certifications",
   },
   books: {
     title: "Books",

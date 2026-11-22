@@ -1,6 +1,8 @@
 import PageHeader from "../../components/PageHeader";
 import { aiCapabilities, aiTools, aiWork } from "../../config/ai";
 import { pageContent } from "../../config/siteContent";
+import { certifications } from "../../config/certifications";
+import CertificationItem from "../../components/certifications/CertificationItem";
 
 export default function AiPage() {
   return (
@@ -55,6 +57,19 @@ export default function AiPage() {
               {capability}
             </li>
           ))}
+        </ul>
+      </section>
+
+      <section className="mt-14" aria-label={pageContent.ai.learningTitle}>
+        <h2 className="mb-4 text-2xl font-bold">{pageContent.ai.learningTitle}</h2>
+        <ul className="divide-y divide-slate-200 border-y border-slate-200 dark:divide-slate-700 dark:border-slate-700">
+          {pageContent.certifications.sections.filter((section) => section.category === "course" || section.category === "certification").flatMap((section) =>
+            certifications.filter((item) => item.category === section.category && item.tags?.includes("AI")).map((item) => (
+              <li key={item.name}>
+                <CertificationItem certification={item} completedLabel={section.statusLabel} dateLabel={section.dateLabel} />
+              </li>
+            )),
+          )}
         </ul>
       </section>
     </div>
