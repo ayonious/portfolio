@@ -19,6 +19,18 @@ export const aiTools = [
     name: "MCP servers",
     use: "Connecting AI assistants to tools, services, and repeatable engineering workflows.",
   },
+  {
+    name: "smolagents",
+    use: "Building code-writing and tool-calling agents with Hugging Face models.",
+  },
+  {
+    name: "LangChain",
+    use: "Composing LLM calls, tools, and agents into application workflows.",
+  },
+  {
+    name: "LlamaIndex",
+    use: "Connecting LLMs to documents and data for retrieval-augmented generation.",
+  },
 ];
 
 export const aiCapabilities = [

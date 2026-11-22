@@ -73,6 +73,7 @@ describe("site pages", () => {
     expect(screen.getByText("AI-powered live travel recommendations")).toBeTruthy();
     expect(screen.getByText("Codex")).toBeTruthy();
     expect(screen.getByText("LLM product integration")).toBeTruthy();
+    expect(screen.getByText("LlamaIndex")).toBeTruthy();
     expect(screen.getByRole("link", { name: "Fundamentals of Agents" }).getAttribute("href")).toBe("https://huggingface.co/learn/agents-course");
   });
 

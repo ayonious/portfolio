@@ -32,6 +32,10 @@ export const skillGroups = [
     skills: ["Codex", "Claude Code", "Cursor", "ChatGPT", "MCP servers"],
   },
   {
+    title: "Agentic frameworks",
+    skills: ["smolagents", "LangChain", "LlamaIndex"],
+  },
+  {
     title: "Monitoring",
     skills: ["Grafana", "Kibana"],
   },
