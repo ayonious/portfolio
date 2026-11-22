@@ -2,7 +2,7 @@ import HeadingLink from "../HeadingLink";
 import type { Certification } from "../../config/certifications";
 import TopicTags from "../TopicTags";
 
-export default function CertificationItem({ certification, completedLabel, dateLabel }: { certification: Certification; completedLabel: string; dateLabel: string }) {
+export default function CertificationItem({ certification, dateLabel }: { certification: Certification; dateLabel: string }) {
   return (
     <article className="flex flex-wrap items-start justify-between gap-x-6 gap-y-2 py-4">
       <div className="min-w-0 flex-1 basis-64">
@@ -14,13 +14,10 @@ export default function CertificationItem({ certification, completedLabel, dateL
           </HeadingLink> : certification.name}
         </h3>
         <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{certification.issuer}</p>
-        {certification.issued !== completedLabel && <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{dateLabel} {certification.issued}</p>}
+        {certification.issued && <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{dateLabel} {certification.issued}</p>}
         {certification.result && <p className="mt-2 text-sm font-semibold text-slate-600 dark:text-slate-300">Result: {certification.result}</p>}
         {certification.description && <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{certification.description}</p>}
         {certification.tags && <TopicTags tags={certification.tags} title={certification.name} />}
-      </div>
-      <div className="shrink-0">
-        <span className="inline-flex rounded-full bg-[var(--accent-soft)] px-2 py-0.5 text-xs font-semibold text-[var(--accent)]">{completedLabel}</span>
       </div>
     </article>
   );

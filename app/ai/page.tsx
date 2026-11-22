@@ -66,7 +66,7 @@ export default function AiPage() {
           {pageContent.certifications.sections.filter((section) => section.category === "course" || section.category === "certification").flatMap((section) =>
             certifications.filter((item) => item.category === section.category && item.tags?.includes("AI")).map((item) => (
               <li key={item.name}>
-                <CertificationItem certification={item} completedLabel={section.statusLabel} dateLabel={section.dateLabel} />
+                <CertificationItem certification={item} dateLabel={section.dateLabel} />
               </li>
             )),
           )}

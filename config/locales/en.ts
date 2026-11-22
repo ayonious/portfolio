@@ -217,12 +217,11 @@ export const pageContent = {
     introduction:
       "My university education, professional credentials, and continued learning.",
     sections: [
-      { category: "education", title: "Education", emoji: "🎓", dateLabel: "Graduated", statusLabel: "Graduated" },
-      { category: "certification", title: "Certifications", emoji: "📜", dateLabel: "Issued", statusLabel: "Completed" },
-      { category: "course", title: "Courses", emoji: "📚", dateLabel: "Completed", statusLabel: "Completed" },
-      { category: "award", title: "Awards", emoji: "🏆", dateLabel: "Awarded", statusLabel: "Awarded" },
+      { category: "education", title: "Education", emoji: "🎓", dateLabel: "Graduated" },
+      { category: "certification", title: "Certifications", emoji: "📜", dateLabel: "Issued" },
+      { category: "course", title: "Courses", emoji: "📚", dateLabel: "Completed" },
+      { category: "award", title: "Awards", emoji: "🏆", dateLabel: "Awarded" },
     ],
-    completedLabel: "Completed",
   },
   blog: {
     title: "Blog",

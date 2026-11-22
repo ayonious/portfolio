@@ -102,7 +102,8 @@ describe("site pages", () => {
     expect(screen.queryByRole("link", { name: "Show credential ↗" })).toBeNull();
     expect(screen.getByRole("heading", { name: "BSc in Computer Science and Engineering" })).toBeTruthy();
     expect(screen.getByText("Bangladesh University of Engineering and Technology (BUET)")).toBeTruthy();
-    expect(screen.getAllByText("Completed")).toHaveLength(5);
+    expect(screen.queryByText("Completed")).toBeNull();
+    expect(screen.queryByText("Awarded")).toBeNull();
     expect(screen.getByText("Result: 7th Place")).toBeTruthy();
     expect(screen.getByRole("link", { name: "Fundamentals of Agents" }).getAttribute("href")).toBe("https://huggingface.co/learn/agents-course");
     for (const name of ["Education", "Certifications", "Courses", "Awards"]) {

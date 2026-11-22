@@ -2,7 +2,7 @@ export type Certification = {
   category: "education" | "certification" | "award" | "course";
   name: string;
   issuer: string;
-  issued: string;
+  issued?: string;
   url?: string;
   description?: string;
   result?: string;
@@ -36,7 +36,6 @@ export const certifications: Certification[] = [
     category: "award",
     name: "ACM-ICPC Asia Regional Dhaka Site 2011",
     issuer: "ACM International Collegiate Programming Contest",
-    issued: "Awarded",
     result: "3rd Place",
     tags: ["CompetitiveProgramming", "Algorithms", "ProblemSolving", "Teamwork"],
   },
@@ -44,7 +43,6 @@ export const certifications: Certification[] = [
     category: "award",
     name: "ACM-ICPC Asia Regional Dhaka Site 2010",
     issuer: "ACM International Collegiate Programming Contest",
-    issued: "Awarded",
     result: "7th Place",
     tags: ["CompetitiveProgramming", "Algorithms", "ProblemSolving", "Teamwork"],
   },
@@ -52,7 +50,6 @@ export const certifications: Certification[] = [
     category: "award",
     name: "ACM-ICPC Asia Regional Dhaka Site 2009",
     issuer: "ACM International Collegiate Programming Contest",
-    issued: "Awarded",
     result: "3rd Place",
     tags: ["CompetitiveProgramming", "Algorithms", "ProblemSolving", "Teamwork"],
   },
@@ -60,7 +57,6 @@ export const certifications: Certification[] = [
     category: "award",
     name: "Divisional Mathematical Olympiad 2008, Dhaka",
     issuer: "Bangladesh Mathematical Olympiad Committee",
-    issued: "Awarded",
     result: "Champion, Higher Secondary category",
     tags: ["Mathematics", "Olympiad", "ProblemSolving"],
   },
@@ -86,7 +82,6 @@ export const certifications: Certification[] = [
     tags: ["Psychology", "HumanBehavior", "SoftSkills", "Leadership"],
     url: "https://www.coursera.org/learn/introduction-psychology",
     issuer: "Coursera",
-    issued: "Completed",
     description: "An introduction to the foundations of psychology and human behavior.",
   },
 ];
